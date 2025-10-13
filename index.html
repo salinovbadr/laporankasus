@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Tambah Laporan Kasus – Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --brand:#0A4B8F; --ink:#0C1B2A; }
+    html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+    .ios-safe { padding-bottom: env(safe-area-inset-bottom); }
+    .shadow-card { box-shadow: 0 6px 20px rgba(16,24,40,.08); }
+    .disabled { opacity:.6; pointer-events:none; }
+    input[readonly], .ro { background:#F8FAFC; color:#0f172a; }
+    .hint { font-size:.75rem; color:#475569 }
+  </style>
+</head>
+<body class="bg-white text-slate-900">
+  <!-- Top App Bar -->
+  <header class="bg-[var(--brand)] text-white">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
+      <button id="backBtn" aria-label="Back" class="p-2 -ml-2 rounded-full hover:bg-white/10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <div>
+        <div class="text-base font-semibold leading-5">Tambah Laporan Kasus</div>
+        <div class="text-xs opacity-90">PUSKESMAS JUMO</div>
+      </div>
+    </div>
+    <!-- progress -->
+    <div class="max-w-md mx-auto px-4 pb-2">
+      <div class="h-1.5 bg-white/20 rounded-full overflow-hidden">
+        <div id="progressInner" class="h-full w-1/5 bg-white rounded-full"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-md mx-auto px-4 pb-24 ios-safe">
+
+    <!-- SECTION 0: Pilih Jenis Laporan -->
+    <section id="sec0" class="mt-5">
+      <p class="text-lg font-semibold text-slate-900">Pilih Jenis Laporan Kasus</p>
+      <div class="mt-4 grid gap-3">
+        <label class="flex items-center gap-3 p-4 border rounded-2xl shadow-card cursor-pointer hover:bg-slate-50">
+          <input type="radio" name="jenisLaporan" id="lapGigitan" value="Gigitan Hewan" class="accent-[var(--brand)]">
+          <div>
+            <div class="font-semibold">Gigitan Hewan</div>
+            <div class="text-sm text-slate-600">Laporan kasus gigitan hewan pada manusia</div>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- SECTION 1: Data Pasien -->
+    <section id="sec1" class="hidden">
+      <section class="mt-5">
+        <h2 class="text-sm font-semibold text-slate-200/0">&nbsp;</h2>
+        <p class="text-lg font-semibold text-slate-900">Data Pasien</p>
+      </section>
+
+      <!-- NIK -->
+      <div class="mt-4">
+        <label for="nik" class="block text-sm font-medium text-slate-700">NIK <span class="text-red-600">*</span></label>
+        <input id="nik" maxlength="16" inputmode="numeric" pattern="[0-9]*"
+               class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+               placeholder="16 digit NIK" />
+        <p id="nikErr" class="hidden text-xs text-red-600 mt-1">NIK harus 16 digit angka.</p>
+        <p class="hint mt-1">Otomatis mengisi Tanggal Lahir, Usia, Jenis Kelamin, Provinsi, Kab/Kota.</p>
+      </div>
+
+      <!-- Identity Card -->
+      <div class="mt-4 rounded-2xl border border-slate-200 shadow-card">
+        <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 text-sm font-semibold text-slate-700">
+          Data Identitas dari NIK
+        </div>
+        <div class="p-4 grid grid-cols-2 gap-y-3 text-sm">
+          <div class="text-slate-600">Tanggal Lahir</div>
+          <div id="dob" class="font-semibold ro">—</div>
+
+          <div class="text-slate-600">Usia</div>
+          <div id="age" class="font-semibold ro">—</div>
+
+          <div class="text-slate-600">Jenis Kelamin</div>
+          <div id="gender" class="font-semibold ro">—</div>
+
+          <div class="text-slate-600">Provinsi</div>
+          <div id="prov" class="font-semibold ro">—</div>
+
+          <div class="text-slate-600">Kabupaten/Kota</div>
+          <div id="kab" class="font-semibold ro">—</div>
+        </div>
+      </div>
+
+      <!-- Kecamatan -->
+      <div class="mt-4">
+        <label for="kec" class="block text-sm font-medium text-slate-700">Kecamatan <span class="text-red-600">*</span></label>
+        <select id="kec"
+                class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih kecamatan…</option>
+        </select>
+        <p class="hint mt-1">Daftar kecamatan mengikuti Kab/Kota dari NIK.</p>
+      </div>
+
+      <!-- Alamat Kejadian (wajib) -->
+      <div class="mt-4">
+        <label for="alamatKejadian" class="block text-sm font-medium text-slate-700">Alamat Lengkap Kejadian <span class="text-red-600">*</span></label>
+        <textarea id="alamatKejadian" rows="3"
+          class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+          placeholder="Nama jalan, RT/RW, kelurahan/desa, patokan…"></textarea>
+      </div>
+
+      <!-- Alamat Domisili (optional) -->
+      <div class="mt-4">
+        <label for="alamatDomisili" class="block text-sm font-medium text-slate-700">Alamat Domisili Pasien (Opsional)</label>
+        <textarea id="alamatDomisili" rows="3"
+          class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+          placeholder="Isi bila berbeda dengan alamat kejadian"></textarea>
+      </div>
+
+      <!-- No Telp (optional) -->
+      <div class="mt-4">
+        <label for="telp" class="block text-sm font-medium text-slate-700">No. Telepon (Opsional)</label>
+        <input id="telp" type="tel" inputmode="tel"
+               class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+               placeholder="08xxxxxxxxxx"/>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Kondisi Hewan -->
+    <section id="sec2" class="mt-8 hidden">
+      <p class="text-lg font-semibold text-slate-900">Kondisi Hewan</p>
+
+      <!-- Jenis Hewan -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Jenis Hewan <span class="text-red-600">*</span></label>
+        <select id="jenisHewan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Anjing</option>
+          <option>Kucing</option>
+          <option>Kera</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+
+      <!-- Lokasi Gigitan -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Lokasi Gigitan <span class="text-red-600">*</span></label>
+        <select id="lokasiGigitan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Kepala / Leher</option>
+          <option>Tangan</option>
+          <option>Kaki</option>
+          <option>Badan</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+
+      <!-- Status Kepemilikan -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Status Kepemilikan Hewan <span class="text-red-600">*</span></label>
+        <select id="statusPemilik" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Milik Sendiri</option>
+          <option>Milik Tetangga</option>
+          <option>Hewan Liar</option>
+          <option>Tidak Tahu</option>
+        </select>
+      </div>
+
+      <!-- Status Kondisi Hewan -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Status Kondisi Hewan <span class="text-red-600">*</span></label>
+        <select id="statusHewan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Mati</option>
+          <option>Hilang</option>
+          <option>Masih Hidup dan diobservasi</option>
+        </select>
+      </div>
+
+      <!-- Gejala (multi pilih) -->
+      <div class="mt-4">
+        <div class="text-sm font-medium text-slate-700">Gejala yang diamati (pilih semua yang sesuai) <span class="text-red-600">*</span></div>
+        <div id="symptomsWrap" class="mt-2 grid grid-cols-1 gap-2 text-sm">
+          <label class="flex items-start gap-3"><input type="checkbox" value="Perubahan perilaku" class="mt-1"> <span>Perubahan perilaku (agresif / tidak mau makan / menyendiri)</span></label>
+          <label class="flex items-start gap-3"><input type="checkbox" value="Hiperaktif" class="mt-1"> <span>Hiperaktif / menyerang tanpa sebab</span></label>
+          <label class="flex items-start gap-3"><input type="checkbox" value="Hipersalivasi" class="mt-1"> <span>Hipersalivasi (liur berlebihan)</span></label>
+          <label class="flex items-start gap-3"><input type="checkbox" value="Suara parau" class="mt-1"> <span>Suara parau / tidak bisa menggonggong</span></label>
+          <label class="flex items-start gap-3"><input type="checkbox" value="Takut air" class="mt-1"> <span>Takut air (hidrofobia)</span></label>
+          <label class="flex items-start gap-3"><input type="checkbox" value="Kelumpuhan" class="mt-1"> <span>Kelumpuhan rahang atau anggota tubuh</span></label>
+          <label class="flex items-start gap-3"><input type="checkbox" value="Disorientasi" class="mt-1"> <span>Disorientasi / kejang</span></label>
+        </div>
+        <p id="symErr" class="hidden text-xs text-red-600 mt-1">Pilih minimal satu gejala.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Pemeriksaan Laboratorium -->
+    <section id="sec3" class="mt-8 hidden">
+      <p class="text-lg font-semibold text-slate-900">Pemeriksaan Laboratorium</p>
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Apakah ada hasil laboratorium pemeriksaan hewan? <span class="text-red-600">*</span></label>
+        <div class="mt-2 flex gap-6 text-sm">
+          <label class="inline-flex items-center gap-2"><input type="radio" name="hasLab" value="ya"> <span>Ya</span></label>
+          <label class="inline-flex items-center gap-2"><input type="radio" name="hasLab" value="tidak"> <span>Tidak</span></label>
+        </div>
+      </div>
+      <p class="hint mt-3">Jika "Ya" maka lanjut ke input hasil laboratorium. Jika "Tidak" maka selesai pengisian laporan kasus gigitan hewan.</p>
+    </section>
+
+    <!-- SECTION 4: Hasil Pemeriksaan Laboratorium -->
+    <section id="sec4" class="mt-8 hidden">
+      <p class="text-lg font-semibold text-slate-900">Hasil Pemeriksaan Laboratorium</p>
+
+      <!-- Laboratorium -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Laboratorium <span class="text-red-600">*</span></label>
+        <select id="labName" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Balai Besar Veteriner</option>
+          <option>Balai Veteriner</option>
+        </select>
+      </div>
+
+      <!-- Specimen Type -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Jenis Spesimen <span class="text-red-600">*</span></label>
+        <input id="specimenType" type="text" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]" placeholder="Contoh: jaringan otak / brain tissue"/>
+      </div>
+
+      <!-- Specimen ID -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">ID Spesimen <span class="text-red-600">*</span></label>
+        <input id="specimenId" type="text" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]" placeholder="Contoh: RAB-0825-001"/>
+      </div>
+
+      <!-- Collection Date -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Tanggal Pengambilan Sampel <span class="text-red-600">*</span></label>
+        <input id="collectionDate" type="date" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
+      </div>
+
+      <!-- Result Release Date -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Tanggal Hasil Diterbitkan <span class="text-red-600">*</span></label>
+        <input id="resultDate" type="date" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
+      </div>
+
+      <!-- Examination Method -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Metode Pemeriksaan <span class="text-red-600">*</span></label>
+        <select id="examMethod" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>FAT (Fluorescent Antibody Test)</option>
+          <option>RT-PCR (Reverse Transcriptase PCR)</option>
+          <option>DRIT (Direct Rapid Immunohistochemical Test)</option>
+        </select>
+      </div>
+
+      <!-- Equipment -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Peralatan Utama <span class="text-red-600">*</span></label>
+        <select id="equipment" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Mikroskop Fluoresensi</option>
+          <option>Sistem PCR</option>
+        </select>
+      </div>
+
+      <!-- Reagent -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Bahan Habis Pakai / Reagen <span class="text-red-600">*</span></label>
+        <select id="reagent" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Rabies Antibody Conjugate</option>
+          <option>PCR Master Mix</option>
+        </select>
+      </div>
+
+      <!-- Result -->
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-slate-700">Hasil Pemeriksaan <span class="text-red-600">*</span></label>
+        <select id="examResult" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Positif Rabies Virus</option>
+          <option>Negatif Rabies Virus</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Footer CTA (tetap) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 ios-safe">
+      <div class="max-w-md mx-auto px-4 py-3">
+        <button id="nextBtn"
+          class="w-full flex items-center justify-center gap-2 rounded-2xl bg-slate-300 text-white py-3 font-semibold transition disabled">
+          <span>Berikutnya</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast / Snackbar -->
+    <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 z-50 hidden">
+      <div id="toastMsg" class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-card text-sm"></div>
+    </div>
+
+  </main>
+
+  <!-- Script: ADM (wilayah) -->
+  <script>
+    // Data wilayah: prov -> kab/kota -> kecamatan (subset representatif untuk contoh)
+    const ADM = {
+      "13": { name: "PROV. SUMATERA BARAT", kab: {
+        "1306": { name: "KAB. PADANG PARIAMAN", kec: ["Batang Anai","Lubuk Alung","Nan Sabaris","Padang Sago","Patamuan","Sintuk Toboh Gadang","Sungai Geringging","Sungai Limau","Ulakan Tapakis","V Koto Kampung Dalam","2 x 11 Enam Lingkung","2 x 11 Kayu Tanam","Batang Gasan"] },
+        "1307": { name: "KAB. AGAM", kec: ["Ampek Angkek","Banuhampu","Baso","Candung","IV Koto","Kamang Magek","Lubuk Basung","Malalak","Palembayan","Palupuh","Sungai Pua","Tanjung Mutiara","Tilatang Kamang"] },
+        "1308": { name: "KAB. LIMA PULUH KOTA", kec: ["Akabiluru","Bukik Barisan","Guguak","Gunuang Omeh","Harau","Kapur IX","Lareh Sago Halaban","Luak","Mungka","Pangkalan Koto Baru","Payakumbuh","Situjuah Limo Nagari","Suliki"] },
+        "1371": { name: "KOTA PADANG", kec: ["Bungus Teluk Kabung","Koto Tangah","Kuranji","Lubuk Begalung","Lubuk Kilangan","Nanggalo","Padang Barat","Padang Selatan","Padang Timur","Padang Utara","Pauh"] },
+        "1375": { name: "KOTA BUKITTINGGI", kec: ["Aur Birugo Tigo Baleh","Guguk Panjang","Mandiangin Koto Selayan"] },
+        "1376": { name: "KOTA PAYAKUMBUH", kec: ["Payakumbuh Barat","Payakumbuh Timur","Payakumbuh Utara","Payakumbuh Selatan","Lamposi Tigo Nagori"] },
+        "1377": { name: "KOTA PARIAMAN", kec: ["Pariaman Selatan","Pariaman Tengah","Pariaman Timur","Pariaman Utara"] }
+      }},
+      "51": { name: "PROV. BALI", kab: {
+        "5101": { name: "KAB. JEMBRANA", kec: ["Melaya","Negara","Jembrana","Mendooyo","Pekutatan"] },
+        "5102": { name: "KAB. TABANAN", kec: ["Baturiti","Kediri","Kerambitan","Marga","Penebel","Pupuan","Selemadeg","Selemadeg Barat","Selemadeg Timur","Tabanan"] },
+        "5103": { name: "KAB. BADUNG", kec: ["Abiansemal","Kuta","Kuta Selatan","Kuta Utara","Mengwi","Petang"] },
+        "5104": { name: "KAB. GIANYAR", kec: ["Blahbatuh","Gianyar","Payangan","Sukawati","Tampaksiring","Tegallalang","Ubud"] },
+        "5105": { name: "KAB. KLUNGKUNG", kec: ["Banjarangkan","Dawan","Klungkung","Nusa Penida"] },
+        "5106": { name: "KAB. BANGLI", kec: ["Bangli","Kintamani","Susut","Tembuku"] },
+        "5107": { name: "KAB. KARANGASEM", kec: ["Abang","Bebandem","Karangasem","Kubu","Manggis","Rendang","Selat","Sidemen"] },
+        "5108": { name: "KAB. BULELENG", kec: ["Banjar","Buleleng","Busungbiu","Gerokgak","Kubutambahan","Sawan","Seririt","Sukasada","Tejakula"] },
+        "5171": { name: "KOTA DENPASAR", kec: ["Denpasar Barat","Denpasar Selatan","Denpasar Timur","Denpasar Utara"] }
+      }},
+      "53": { name: "PROV. NUSA TENGGARA TIMUR", kab: {
+        "5301": { name: "KAB. KUPANG", kec: ["Amabi Oefeto","Amfoang Barat Daya","Amfoang Barat Laut","Amfoang Selatan","Amfoang Tengah","Amfoang Timur","Amarasi","Amarasi Barat","Amarasi Selatan","Amarasi Timur","Fatuleu","Fatuleu Barat","Fatuleu Tengah","Kupang Barat","Kupang Tengah","Kupang Timur","Nekamese","Semau","Semau Selatan","Sulamu","Taebenu","Takari"] },
+        "5302": { name: "KAB. TIMOR TENGAH SELATAN", kec: ["Amanuban Barat","Amanuban Selatan","Amanuban Tengah","Amanuban Timur","Amanatun Selatan","Amanatun Utara","Batu Putih","Boking","Fatukopa","Kie","Kok Baun","Kolbano","Kota Soe","Kuanfatu","Kuatnana","Mollo Barat","Mollo Selatan","Mollo Tengah","Mollo Utara","Noebana","Noebeba","Nunkolo","Oenino","Polen","Santian","Tobu"] },
+        "5311": { name: "KAB. SIKKA", kec: ["Alok","Alok Barat","Alok Timur","Bola","Doreng","Hewokloang","Kangae","Kewapante","Lela","Magepanda","Mapitara","Mego","Nelle","Nita","Paga","Palue","Talibura","Tana Ai","Waiblama","Waigete"] },
+        "5312": { name: "KAB. ENDE", kec: ["Detusoko","Ende","Ende Selatan","Ende Tengah","Ende Timur","Ende Utara","Kelimutu","Kota Baru","Lio Timur","Maukaro","Maurole","Ndona","Ndona Timur","Nangaroro","Pulau Ende","Wewaria","Wolowaru"] },
+        "5314": { name: "KAB. MANGGARAI", kec: ["Cibal","Langke Rembong","Rahong Utara","Ruteng","Satar Mese","Satar Mese Barat","Wae Rii"] },
+        "5315": { name: "KAB. ROTE NDAO", kec: ["Lobalain","Ndao Nuse","Pantai Baru","Rote Barat","Rote Barat Daya","Rote Barat Laut","Rote Selatan","Rote Tengah","Rote Timur","Landu Leko"] },
+        "5371": { name: "KOTA KUPANG", kec: ["Alak","Kelapa Lima","Kota Lama","Kota Raja","Maulafa","Oebobo"] }
+      }}
+    };
+  </script>
+
+  <script>
+    // ====== DOM refs umum ======
+    const sec0 = document.getElementById('sec0');
+    const sec1 = document.getElementById('sec1');
+    const sec2 = document.getElementById('sec2');
+    const sec3 = document.getElementById('sec3');
+    const sec4 = document.getElementById('sec4');
+
+    const lapGigitan = document.getElementById('lapGigitan');
+
+    // Section 1 refs
+    const nikEl = document.getElementById('nik');
+    const nikErr = document.getElementById('nikErr');
+    const dobEl = document.getElementById('dob');
+    const ageEl = document.getElementById('age');
+    const genderEl = document.getElementById('gender');
+    const provEl = document.getElementById('prov');
+    const kabEl = document.getElementById('kab');
+    const kecEl = document.getElementById('kec');
+    const alamatKejadianEl = document.getElementById('alamatKejadian');
+    const nextBtn = document.getElementById('nextBtn');
+    const backBtn = document.getElementById('backBtn');
+
+    // Section 2 refs
+    const jenisHewan = document.getElementById('jenisHewan');
+    const lokasiGigitan = document.getElementById('lokasiGigitan');
+    const statusPemilik = document.getElementById('statusPemilik');
+    const statusHewan = document.getElementById('statusHewan');
+    const symptomsWrap = document.getElementById('symptomsWrap');
+    const symErr = document.getElementById('symErr');
+
+    // Section 3
+    const hasLabRadios = () => document.querySelector('input[name="hasLab"]:checked');
+
+    // Section 4 refs
+    const labName = document.getElementById('labName');
+    const specimenType = document.getElementById('specimenType');
+    const specimenId = document.getElementById('specimenId');
+    const collectionDate = document.getElementById('collectionDate');
+    const resultDate = document.getElementById('resultDate');
+    const examMethod = document.getElementById('examMethod');
+    const equipment = document.getElementById('equipment');
+    const reagent = document.getElementById('reagent');
+    const examResult = document.getElementById('examResult');
+
+    let step = 0; // 0: Pilih Jenis, 1: Data Pasien, 2: Kondisi Hewan, 3: Pertanyaan Lab, 4: Detail Lab
+
+    // ====== Validations ======
+    function validStep0(){ return lapGigitan.checked; }
+    function validStep1(){
+      const nikOk = nikEl.value.length === 16;
+      const alamatOk = alamatKejadianEl.value.trim().length > 5;
+      const kecOk = kecEl.value !== '';
+      return nikOk && alamatOk && kecOk;
+    }
+    function validStep2(){
+      const j = !!jenisHewan.value; const l = !!lokasiGigitan.value; const sp = !!statusPemilik.value; const sh = !!statusHewan.value;
+      const anySym = [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].some(cb=>cb.checked);
+      symErr.classList.toggle('hidden', anySym);
+      return j && l && sp && sh && anySym;
+    }
+    function validStep3(){ return !!hasLabRadios(); }
+    function validStep4(){
+      return labName.value && specimenType.value.trim() && specimenId.value.trim() && collectionDate.value && resultDate.value && examMethod.value && equipment.value && reagent.value && examResult.value;
+    }
+
+    // ====== CTA state ======
+    function updateCTA(){
+      let enable=false; let label='Berikutnya';
+      if (step===0){ enable = validStep0(); label='Lanjut ke Data Pasien'; }
+      else if (step===1){ enable = validStep1(); label='Lanjut ke Kondisi Hewan'; }
+      else if (step===2){ enable = validStep2(); label='Lanjut ke Pemeriksaan Lab'; }
+      else if (step===3){
+        enable = validStep3();
+        const ans = hasLabRadios()?.value;
+        label = ans==='ya' ? 'Lanjut Isi Detail Lab' : 'Selesai';
+      }
+      else if (step===4){ enable = validStep4(); label='Simpan Hasil Lab & Kirim Laporan'; }
+
+      nextBtn.disabled = !enable;
+      nextBtn.classList.toggle('disabled', !enable);
+      nextBtn.classList.toggle('bg-[var(--brand)]', enable);
+      nextBtn.classList.toggle('bg-slate-300', !enable);
+      nextBtn.querySelector('span').textContent = label;
+      updateBackBtn();
+    }
+
+    function updateBackBtn(){
+      backBtn.disabled = step===0;
+      backBtn.classList.toggle('opacity-50', step===0);
+    }
+
+    // ====== Navigation ======
+    nextBtn.addEventListener('click', () => {
+      if (step===0 && validStep0()) { step=1; showStep(step); updateCTA(); return; }
+      if (step===1 && validStep1()) { step=2; showStep(step); updateCTA(); return; }
+      if (step===2 && validStep2()) { step=3; showStep(step); updateCTA(); return; }
+      if (step===3 && validStep3()) {
+        const ans = hasLabRadios().value;
+        if (ans==='ya') { step=4; showStep(step); updateCTA(); return; }
+        // Tidak punya hasil lab -> simpan dan kembali ke awal
+        showToast('Data laporan kasus telah disimpan.');
+        resetAll();
+        return;
+      }
+      if (step===4 && validStep4()) {
+        const payloadLab = {
+          laboratorium: labName.value,
+          jenis_spesimen: specimenType.value.trim(),
+          id_spesimen: specimenId.value.trim(),
+          tanggal_pengambilan: collectionDate.value,
+          tanggal_hasil: resultDate.value,
+          metode: examMethod.value,
+          peralatan: equipment.value,
+          reagen: reagent.value,
+          hasil: examResult.value
+        };
+        showToast('Laporan & hasil lab telah disimpan.');
+        resetAll();
+      }
+    });
+
+    backBtn.addEventListener('click', () => { if (step>0){ step--; showStep(step); updateCTA(); } });
+
+    function showStep(s){
+      [sec0, sec1, sec2, sec3, sec4].forEach((el,i)=>{ if(!el) return; el.classList.toggle('hidden', i!==s); });
+      window.scrollTo({top:0, behavior:'auto'});
+      const bar = document.getElementById('progressInner');
+      const widths = {0:'20%',1:'40%',2:'60%',3:'80%',4:'100%'}; if (bar) bar.style.width = widths[s] || '20%';
+    }
+
+    // ====== Helpers ======
+    function resetIdentity(){
+      dobEl.textContent = '—';
+      ageEl.textContent = '—';
+      genderEl.textContent = '—';
+      provEl.textContent = '—';
+      kabEl.textContent = '—';
+      kecEl.innerHTML = `<option value="">Pilih kecamatan…</option>`;
+    }
+
+    function resetAll(){
+      // Step 0
+      lapGigitan.checked = false;
+      // Step 1
+      nikEl.value=''; nikErr.classList.add('hidden'); resetIdentity();
+      alamatKejadianEl.value='';
+      const domisiliEl = document.getElementById('alamatDomisili'); if (domisiliEl) domisiliEl.value='';
+      const telpEl = document.getElementById('telp'); if (telpEl) telpEl.value='';
+      // Step 2
+      jenisHewan.value=''; lokasiGigitan.value=''; statusPemilik.value=''; statusHewan.value='';
+      [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].forEach(cb=> cb.checked=false);
+      // Step 3
+      document.querySelectorAll('input[name="hasLab"]').forEach(r=> r.checked=false);
+      // Step 4
+      labName.value=''; specimenType.value=''; specimenId.value=''; collectionDate.value=''; resultDate.value=''; examMethod.value=''; equipment.value=''; reagent.value=''; examResult.value='';
+
+      step=0; showStep(step); updateCTA();
+    }
+
+    // Snackbar / Toast helper
+    function showToast(message){
+      const t = document.getElementById('toast');
+      const m = document.getElementById('toastMsg');
+      if (!t || !m) return;
+      m.textContent = message;
+      t.classList.remove('hidden');
+      t.animate([
+        { transform: 'translate(-50%, 20px)', opacity: 0 },
+        { transform: 'translate(-50%, 0)', opacity: 1 }
+      ], { duration: 200, fill: 'forwards' });
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(()=>{
+        const anim = t.animate([
+          { opacity: 1 },
+          { opacity: 0 }
+        ], { duration: 250, fill: 'forwards' });
+        anim.onfinish = ()=> t.classList.add('hidden');
+      }, 2200);
+    }
+
+    // ====== Listeners for CTA enabling ======
+    document.addEventListener('change', (e)=>{ if(e.target.name==='jenisLaporan'){ updateCTA(); }});
+    nikEl.addEventListener('input', (e)=>{ e.target.value = e.target.value.replace(/\D/g,'').slice(0,16); if(e.target.value.length===16){ nikErr.classList.add('hidden'); autofillFromNIK(e.target.value);} else { nikErr.classList.toggle('hidden', e.target.value.length===0); resetIdentity(); } updateCTA();});
+    alamatKejadianEl.addEventListener('input', updateCTA);
+    kecEl.addEventListener('change', updateCTA);
+    ;[jenisHewan,lokasiGigitan,statusPemilik,statusHewan].forEach(el=> el.addEventListener('change', updateCTA));
+    symptomsWrap.addEventListener('change', updateCTA);
+    document.addEventListener('change', (e)=>{ if(e.target.name==='hasLab') updateCTA(); });
+    ;[labName,specimenType,specimenId,collectionDate,resultDate,examMethod,equipment,reagent,examResult].forEach(el=> el.addEventListener('input', updateCTA));
+
+    // ====== NIK helpers ======
+    function fmtDate(d){ return d.toLocaleDateString('id-ID',{day:'2-digit', month:'short', year:'numeric'}).toUpperCase(); }
+    function calcUsia(dob){ const now=new Date(); let years=now.getFullYear()-dob.getFullYear(); let months=now.getMonth()-dob.getMonth(); let days=now.getDate()-dob.getDate(); if(days<0){months--;} if(months<0){years--; months+=12;} return `${years} thn ${months} bln`; }
+    function autofillFromNIK(nik){ const provCode=nik.slice(0,2); const kabCode=nik.slice(0,4); let dd=parseInt(nik.slice(6,8),10); const mm=parseInt(nik.slice(8,10),10); const yy=parseInt(nik.slice(10,12),10); let gender='Laki-laki'; if(dd>40){ dd-=40; gender='Perempuan'; } const nowYY=new Date().getFullYear()%100; const fullYear= yy<=nowYY ? 2000+yy : 1900+yy; const dob=new Date(fullYear, mm-1, dd); if(isNaN(dob.getTime())){ resetIdentity(); nikErr.classList.remove('hidden'); return; } dobEl.textContent=fmtDate(dob); ageEl.textContent=calcUsia(dob); genderEl.textContent=gender; provEl.textContent= ADM[provCode]?.name || `Kode Provinsi ${provCode}`; kabEl.textContent= ADM[provCode]?.kab?.[kabCode]?.name || `Kode Kab/Kota ${kabCode}`; const kecList=(ADM[provCode]?.kab?.[kabCode]?.kec || []); kecEl.innerHTML=`<option value="">Pilih kecamatan…</option>` + kecList.map(k=>`<option value="${k}">${k}</option>`).join(''); }
+
+    // ====== Init ======
+    showStep(step);
+    updateCTA();
+  </script>
+
+  <!-- Tests (opt-in) -->
+  <script>
+    (function(){
+      if (!location.search.includes('runTests=1')) return;
+      const assert = (name, cond) => { console.log('[TEST]', name, cond ? 'PASS' : 'FAIL'); return !!cond; };
+      const results = [];
+      // existing tests (kept)
+      results.push(assert('Progress bar element present', !!document.getElementById('progressInner')));
+      results.push(assert('Step0 requires jenis laporan', (function(){ step=0; lapGigitan.checked=false; updateCTA(); return document.getElementById('nextBtn').disabled===true; })()));
+      results.push(assert('Lab dropdown has 2 options', (function(){ return Array.from(document.getElementById('labName').options).filter(o=>o.value).length===2; })()));
+      results.push(assert('ADM Bali & Denpasar mapping exists', !!ADM['51'] && !!ADM['51'].kab['5171']));
+      results.push(assert('ADM NTT & Kota Kupang mapping exists', !!ADM['53'] && !!ADM['53'].kab['5371']));
+      results.push(assert('ADM Sumbar & Kota Padang mapping exists', !!ADM['13'] && !!ADM['13'].kab['1371']));
+      results.push(assert('Toast element exists', !!document.getElementById('toast')));
+      // new tests for reset helpers
+      results.push(assert('resetAll function exists', typeof resetAll === 'function'));
+      results.push(assert('resetIdentity function exists', typeof resetIdentity === 'function'));
+      results.push(assert('resetAll returns to step 0 and disables Next', (function(){
+        // simulate mid-flow
+        step = 3; document.querySelector('input[name="hasLab"]').checked = true; updateCTA();
+        resetAll();
+        return step===0 && document.getElementById('nextBtn').disabled===true;
+      })()));
+      console.log('[TEST] Summary:', results.every(Boolean));
+    })();
+  </script>
+</body>
+</html>
