@@ -416,6 +416,13 @@
       </div>
 
       <div class="mt-4">
+        <label for="kel" class="block text-sm font-medium text-slate-700">Kelurahan/Desa <span class="text-red-600">*</span></label>
+        <input id="kel" type="text"
+               class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+               placeholder="Nama kelurahan/desa" />
+      </div>
+
+      <div class="mt-4">
         <label for="alamatKejadian" class="block text-sm font-medium text-slate-700">Alamat Lengkap Kejadian <span class="text-red-600">*</span></label>
         <textarea id="alamatKejadian" rows="3"
           class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
@@ -660,6 +667,16 @@
               <div class="w-48 text-slate-600">Kabupaten/Kota</div>
               <div id="detDistrict" class="flex-1 font-semibold text-slate-900"></div>
             </div>
+
+            <div class="flex">
+              <div class="w-48 text-slate-600">Kecamatan</div>
+              <div id="detKec" class="flex-1 font-semibold text-slate-900"></div>
+            </div>
+            
+            <div class="flex">
+              <div class="w-48 text-slate-600">Kelurahan/Desa</div>
+              <div id="detKel" class="flex-1 font-semibold text-slate-900"></div>
+            </div>
             
             <div class="flex">
               <div class="w-48 text-slate-600">Alamat Lengkap Kejadian</div>
@@ -1122,6 +1139,7 @@
     const provEl = document.getElementById('prov');
     const kabEl = document.getElementById('kab');
     const kecEl = document.getElementById('kec');
+    const kelEl = document.getElementById('kel'); // <-- TAMBAHKAN INI
     const alamatKejadianEl = document.getElementById('alamatKejadian');
 
     // Section 2 refs
@@ -1151,10 +1169,11 @@
     function validStep0(){ return lapGigitan.checked; }
     function validStep1(){
       const nikOk = nikEl.value.length === 16;
-      const namaOk = namaLengkap.value.trim().length > 0;
-      const alamatOk = alamatKejadianEl.value.trim().length > 5;
-      const kecOk = kecEl.value !== '';
-      return nikOk && namaOk && alamatOk && kecOk;
+      const namaOk = namaLengkap.value.trim().length > 0;
+      const alamatOk = alamatKejadianEl.value.trim().length > 5;
+      const kecOk = kecEl.value !== '';
+      const kelOk = kelEl.value.trim().length > 0; // <-- TAMBAHKAN INI
+      return nikOk && namaOk && alamatOk && kecOk && kelOk; // <-- UBAH INI
     }
     function validStep2(){
       const j = !!jenisHewan.value; const l = !!lokasiGigitan.value; const sp = !!statusPemilik.value; const sh = !!statusHewan.value;
@@ -1303,6 +1322,7 @@
         province: provEl.textContent,
         district: kabEl.textContent,
         kec: kecEl.value,
+        kel: kelEl.value.trim(), // <-- TAMBAHKAN INI
         registeredAddress: alamatKejadianEl.value.trim(),
         residentialAddress: document.getElementById('alamatDomisili').value.trim(),
         phone: document.getElementById('telp').value.trim(),
@@ -1358,6 +1378,7 @@
     alamatKejadianEl.addEventListener('input', updateCTA);
     namaLengkap.addEventListener('input', updateCTA);
     kecEl.addEventListener('change', updateCTA);
+    kelEl.addEventListener('input', updateCTA); // <-- TAMBAHKAN INI
     [jenisHewan,lokasiGigitan,kategoriGigitan,statusPemilik,statusHewan].forEach(el=> el.addEventListener('change', updateCTA));
     symptomsWrap.addEventListener('change', updateCTA);
     document.addEventListener('change', (e)=>{ if(e.target.name==='hasLab') updateCTA(); });
@@ -1417,6 +1438,7 @@
     function resetCaseForm(){
       lapGigitan.checked=false; nikEl.value=''; namaLengkap.value=''; nikErr.classList.add('hidden'); resetIdentity();
       alamatKejadianEl.value=''; 
+      kelEl.value = ''; // <-- TAMBAHKAN INI
       
       // Reset alamat domisili dan checkbox
       const alamatDomisiliField = document.getElementById('alamatDomisili');
@@ -1496,6 +1518,8 @@
       document.getElementById('detBirthDate').textContent = p.birthDate || '—';
       document.getElementById('detProvince').textContent = p.province || '—';
       document.getElementById('detDistrict').textContent = p.district || '—';
+      document.getElementById('detKec').textContent = p.kec || '—'; // <-- TAMBAHKAN INI
+      document.getElementById('detKel').textContent = p.kel || '—'; // <-- TAMBAHKAN INI
       document.getElementById('detRegisteredAddress').textContent = p.registeredAddress || '—';
       document.getElementById('detResidentialAddress').textContent = p.residentialAddress || '—';
       
