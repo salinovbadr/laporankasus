@@ -66,6 +66,7 @@
     
     .mb-3 { margin-bottom: 0.75rem; }
     .mb-4 { margin-bottom: 1rem; }
+    .mb-5 { margin-bottom: 1.25rem; }
     
     .w-48 { width: 12rem; }
     .flex-1 { flex: 1 1 0%; }
@@ -75,6 +76,10 @@
     
     .space-y-2 > * + * {
       margin-top: 0.5rem;
+    }
+    
+    .space-y-3 > * + * {
+      margin-top: 0.75rem;
     }
     
     .text-xs { font-size: 0.75rem; line-height: 1rem; }
@@ -366,10 +371,10 @@
 
     <!-- SECTION 1: Data Pasien -->
     <section id="sec1" class="hidden">
-      <p class="text-lg font-semibold text-slate-900">Data Pasien</p>
+      <p class="text-lg font-semibold text-slate-900 mb-5">Data Pasien</p>
 
-      <div class="mt-4">
-        <label for="nik" class="block text-sm font-medium text-slate-700">NIK <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label for="nik" class="block text-sm font-medium text-slate-700 mb-2">NIK <span class="text-red-600">*</span></label>
         <input id="nik" maxlength="16" inputmode="numeric" pattern="[0-9]*"
                class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
                placeholder="16 digit NIK" />
@@ -377,14 +382,14 @@
         <p class="hint mt-1">Otomatis mengisi Tanggal Lahir, Usia, Jenis Kelamin, Provinsi, Kab/Kota.</p>
       </div>
 
-      <div class="mt-4">
-        <label for="namaLengkap" class="block text-sm font-medium text-slate-700">Nama Lengkap <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label for="namaLengkap" class="block text-sm font-medium text-slate-700 mb-2">Nama Lengkap <span class="text-red-600">*</span></label>
         <input id="namaLengkap" type="text"
                class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
                placeholder="Nama lengkap pasien" />
       </div>
 
-      <div class="mt-4 rounded-2xl border border-slate-200 shadow-card">
+      <div class="mb-5 rounded-2xl border border-slate-200 shadow-card">
         <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 text-sm font-semibold text-slate-700">
           Data Identitas dari NIK
         </div>
@@ -406,8 +411,8 @@
         </div>
       </div>
 
-      <div class="mt-4">
-        <label for="kec" class="block text-sm font-medium text-slate-700">Kecamatan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label for="kec" class="block text-sm font-medium text-slate-700 mb-2">Kecamatan <span class="text-red-600">*</span></label>
         <select id="kec"
                 class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih kecamatan…</option>
@@ -415,36 +420,38 @@
         <p class="hint mt-1">Daftar kecamatan mengikuti Kab/Kota dari NIK.</p>
       </div>
 
-      <div class="mt-4">
-        <label for="kel" class="block text-sm font-medium text-slate-700">Kelurahan/Desa <span class="text-red-600">*</span></label>
-        <input id="kel" type="text"
-               class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
-               placeholder="Nama kelurahan/desa" />
-      </div>
+      <div class="mb-5">
+        <label for="kel" class="block text-sm font-medium text-slate-700 mb-2">Kelurahan/Desa <span class="text-red-600">*</span></label>
+        <select id="kel"
+                class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih kelurahan/desa…</option>
+        </select>
+        <p class="hint mt-1">Daftar kelurahan/desa mengikuti Kecamatan yang dipilih.</p>
+      </div>
 
-      <div class="mt-4">
-        <label for="alamatKejadian" class="block text-sm font-medium text-slate-700">Alamat Lengkap Kejadian <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label for="alamatKejadian" class="block text-sm font-medium text-slate-700 mb-2">Alamat Lengkap Kejadian <span class="text-red-600">*</span></label>
         <textarea id="alamatKejadian" rows="3"
           class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
           placeholder="Nama jalan, RT/RW, kelurahan/desa, patokan…"></textarea>
       </div>
 
-      <div class="mt-4">
+      <div class="mb-5">
         <label class="flex items-center cursor-pointer">
           <input type="checkbox" id="sameAsKejadian" class="w-4 h-4 rounded border-slate-300 text-[var(--brand)] focus:ring-2 focus:ring-[var(--brand)]">
           <span class="ml-2 text-sm text-slate-700">Sama dengan alamat lengkap kejadian</span>
         </label>
       </div>
 
-      <div class="mt-4">
-        <label for="alamatDomisili" class="block text-sm font-medium text-slate-700">Alamat Domisili Pasien (Opsional)</label>
+      <div class="mb-5">
+        <label for="alamatDomisili" class="block text-sm font-medium text-slate-700 mb-2">Alamat Domisili Pasien (Opsional)</label>
         <textarea id="alamatDomisili" rows="3"
           class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
           placeholder="Isi bila berbeda dengan alamat kejadian"></textarea>
       </div>
 
-      <div class="mt-4">
-        <label for="telp" class="block text-sm font-medium text-slate-700">No. Telepon (Opsional)</label>
+      <div class="mb-5">
+        <label for="telp" class="block text-sm font-medium text-slate-700 mb-2">No. Telepon (Opsional)</label>
         <input id="telp" type="tel" inputmode="tel"
                class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
                placeholder="08xxxxxxxxxx"/>
@@ -453,10 +460,15 @@
 
     <!-- SECTION 2: Kondisi Hewan -->
     <section id="sec2" class="mt-8 hidden">
-      <p class="text-lg font-semibold text-slate-900">Kondisi Hewan</p>
+      <p class="text-lg font-semibold text-slate-900 mb-5">Kondisi Hewan</p>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Jenis Hewan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Tanggal Digigit <span class="text-red-600">*</span></label>
+        <input id="tanggalDigigit" type="date" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
+      </div>
+
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Jenis Hewan <span class="text-red-600">*</span></label>
         <select id="jenisHewan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Anjing</option>
@@ -466,8 +478,8 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Area Gigitan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Area Gigitan <span class="text-red-600">*</span></label>
         <select id="lokasiGigitan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Kepala / Leher</option>
@@ -478,9 +490,30 @@
         </select>
       </div>
 
-      <!-- Kategori atas Gigitan -->
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Kategori atas Gigitan</label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Kondisi Luka <span class="text-red-600">*</span></label>
+        <select id="kondisiLuka" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Luka Gigitan</option>
+          <option>Lecet</option>
+          <option>Luka Dalam</option>
+          <option>Luka Lebar</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Pengobatan <span class="text-red-600">*</span></label>
+        <select id="pengobatan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+          <option value="">Pilih salah satu…</option>
+          <option>Cuci luka s.d 12 jam</option>
+          <option>Cuci luka > 12 jam</option>
+          <option>Tidak cuci luka</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Kategori atas Gigitan</label>
         <select id="kategoriGigitan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Kategori 1</option>
@@ -489,8 +522,8 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Status Kepemilikan Hewan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Status Kepemilikan Hewan <span class="text-red-600">*</span></label>
         <select id="statusPemilik" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Milik Sendiri</option>
@@ -500,8 +533,8 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Status Kondisi Hewan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Status Kondisi Hewan <span class="text-red-600">*</span></label>
         <select id="statusHewan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Mati</option>
@@ -511,8 +544,8 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <div class="text-sm font-medium text-slate-700">Gejala yang diamati (pilih semua yang sesuai) <span class="text-red-600">*</span></div>
+      <div class="mb-5">
+        <div class="text-sm font-medium text-slate-700 mb-2">Gejala yang diamati (pilih semua yang sesuai) <span class="text-red-600">*</span></div>
         <div id="symptomsWrap" class="mt-2 grid grid-cols-1 gap-2 text-sm">
           <label class="flex items-start gap-3"><input type="checkbox" value="Perubahan perilaku" class="mt-1"> <span>Perubahan perilaku (agresif / tidak mau makan / menyendiri)</span></label>
           <label class="flex items-start gap-3"><input type="checkbox" value="Hiperaktif" class="mt-1"> <span>Hiperaktif / menyerang tanpa sebab</span></label>
@@ -530,9 +563,9 @@
 
     <!-- SECTION 3: Pemeriksaan Laboratorium -->
     <section id="sec3" class="mt-8 hidden">
-      <p class="text-lg font-semibold text-slate-900">Pemeriksaan Laboratorium</p>
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Apakah ada hasil laboratorium pemeriksaan hewan? <span class="text-red-600">*</span></label>
+      <p class="text-lg font-semibold text-slate-900 mb-5">Pemeriksaan Laboratorium</p>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Apakah ada hasil laboratorium pemeriksaan hewan? <span class="text-red-600">*</span></label>
         <div class="mt-2 flex gap-6 text-sm">
           <label class="inline-flex items-center gap-2"><input type="radio" name="hasLab" value="ya"> <span>Ya</span></label>
           <label class="inline-flex items-center gap-2"><input type="radio" name="hasLab" value="tidak"> <span>Tidak</span></label>
@@ -543,10 +576,10 @@
 
     <!-- SECTION 4: Hasil Pemeriksaan Laboratorium -->
     <section id="sec4" class="mt-8 hidden">
-      <p class="text-lg font-semibold text-slate-900">Hasil Pemeriksaan Laboratorium</p>
+      <p class="text-lg font-semibold text-slate-900 mb-5">Hasil Pemeriksaan Laboratorium</p>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Laboratorium <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Laboratorium <span class="text-red-600">*</span></label>
         <select id="labName" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Balai Besar Veteriner</option>
@@ -554,28 +587,28 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Jenis Spesimen <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Jenis Spesimen <span class="text-red-600">*</span></label>
         <input id="specimenType" type="text" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]" placeholder="Contoh: jaringan otak / brain tissue"/>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">ID Spesimen <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">ID Spesimen <span class="text-red-600">*</span></label>
         <input id="specimenId" type="text" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]" placeholder="Contoh: RAB-0825-001"/>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Tanggal Pengambilan Sampel <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Tanggal Pengambilan Sampel <span class="text-red-600">*</span></label>
         <input id="collectionDate" type="date" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Tanggal Hasil Diterbitkan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Tanggal Hasil Diterbitkan <span class="text-red-600">*</span></label>
         <input id="resultDate" type="date" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Metode Pemeriksaan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Metode Pemeriksaan <span class="text-red-600">*</span></label>
         <select id="examMethod" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>FAT (Fluorescent Antibody Test)</option>
@@ -584,8 +617,8 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Peralatan Utama <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Peralatan Utama <span class="text-red-600">*</span></label>
         <select id="equipment" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Mikroskop Fluoresensi</option>
@@ -593,8 +626,8 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Bahan Habis Pakai / Reagen <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Bahan Habis Pakai / Reagen <span class="text-red-600">*</span></label>
         <select id="reagent" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Rabies Antibody Conjugate</option>
@@ -602,8 +635,8 @@
         </select>
       </div>
 
-      <div class="mt-4">
-        <label class="block text-sm font-medium text-slate-700">Hasil Pemeriksaan <span class="text-red-600">*</span></label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">Hasil Pemeriksaan <span class="text-red-600">*</span></label>
         <select id="examResult" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Positif Rabies Virus</option>
@@ -632,56 +665,65 @@
           <div class="font-semibold text-slate-900">Data Pasien</div>
         </div>
         <div class="p-4 text-sm">
-          <div class="space-y-2">
-            <div class="flex">
-              <div class="w-48 text-slate-600">Tanggal Input</div>
-              <div id="detInputDate" class="flex-1 font-semibold text-slate-900"></div>
+          <div class="space-y-3">
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Tanggal Input</div>
+              <div id="detInputDate" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">NIK</div>
-              <div id="detNik" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">NIK</div>
+              <div id="detNik" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Nama Lengkap</div>
-              <div id="detName" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Nama Lengkap</div>
+              <div id="detName" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Jenis Kelamin</div>
-              <div id="detGender" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Jenis Kelamin</div>
+              <div id="detGender" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Tanggal Lahir</div>
-              <div id="detBirthDate" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Tanggal Lahir</div>
+              <div id="detBirthDate" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Provinsi</div>
-              <div id="detProvince" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Provinsi</div>
+              <div id="detProvince" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Kabupaten/Kota</div>
-              <div id="detDistrict" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Kabupaten/Kota</div>
+              <div id="detDistrict" class="font-semibold text-slate-900"></div>
             </div>
-            <div class="flex">
-              <div class="w-48 text-slate-600">Kecamatan</div>
-              <div id="detKec" class="flex-1 font-semibold text-slate-900"></div>
-            </div>
-            <div class="flex">
-              <div class="w-48 text-slate-600">Kelurahan/Desa</div>
-              <div id="detKel" class="flex-1 font-semibold text-slate-900"></div>
-            </div>
-            <div class="flex">
-              <div class="w-48 text-slate-600">Alamat Lengkap Kejadian</div>
-              <div id="detRegisteredAddress" class="flex-1 font-semibold text-slate-900"></div>
+            
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Kecamatan</div>
+              <div id="detKec" class="font-semibold text-slate-900"></div>
             </div>
-            <div class="flex">
-              <div class="w-48 text-slate-600">Alamat Domisili</div>
-              <div id="detResidentialAddress" class="flex-1 font-semibold text-slate-900"></div>
+            
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Kelurahan/Desa</div>
+              <div id="detKel" class="font-semibold text-slate-900"></div>
+            </div>
+            
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Alamat Lengkap Kejadian</div>
+              <div id="detRegisteredAddress" class="font-semibold text-slate-900"></div>
+            </div>
+            
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Alamat Domisili</div>
+              <div id="detResidentialAddress" class="font-semibold text-slate-900"></div>
+            </div>
+
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">No. Telepon</div>
+              <div id="detPhone" class="font-semibold text-slate-900"></div>
             </div>
           </div>
         </div>
@@ -693,40 +735,55 @@
           <div class="font-semibold text-slate-900">Laporan Kasus</div>
         </div>
         <div class="p-4 text-sm">
-          <div class="space-y-2">
-            <div class="flex">
-              <div class="w-48 text-slate-600">Diagnosis Klinis</div>
-              <div id="detDiagnosis" class="flex-1 font-semibold text-slate-900"></div>
+          <div class="space-y-3">
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Diagnosis Klinis</div>
+              <div id="detDiagnosis" class="font-semibold text-slate-900"></div>
+            </div>
+
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Tanggal Digigit</div>
+              <div id="detTanggalDigigit" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Jenis Hewan</div>
-              <div id="detAnimalType" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Jenis Hewan</div>
+              <div id="detAnimalType" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Lokasi Gigitan</div>
-              <div id="detBiteLocation" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Lokasi Gigitan</div>
+              <div id="detBiteLocation" class="font-semibold text-slate-900"></div>
+            </div>
+
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Kondisi Luka</div>
+              <div id="detKondisiLuka" class="font-semibold text-slate-900"></div>
+            </div>
+
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Pengobatan</div>
+              <div id="detPengobatan" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Kategori Gigitan</div>
-              <div id="detBiteCategory" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Kategori Gigitan</div>
+              <div id="detBiteCategory" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Kepemilikan Hewan</div>
-              <div id="detAnimalOwnership" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Kepemilikan Hewan</div>
+              <div id="detAnimalOwnership" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Status Hewan</div>
-              <div id="detAnimalStatus" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Status Hewan</div>
+              <div id="detAnimalStatus" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Gejala</div>
-              <div id="detSymptoms" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Gejala</div>
+              <div id="detSymptoms" class="font-semibold text-slate-900"></div>
             </div>
           </div>
         </div>
@@ -738,55 +795,55 @@
           <div class="font-semibold text-slate-900">Pemeriksaan Laboratorium</div>
         </div>
         <div class="p-4 text-sm">
-          <div class="flex mb-3">
-            <div class="w-48 text-slate-600">Pemeriksaan Lab Dilakukan?</div>
-            <div class="flex-1 font-semibold text-slate-900">Jawaban: <span id="detLabAnswer"></span></div>
+          <div class="grid grid-cols-[160px_1fr] gap-2 mb-3">
+            <div class="text-slate-600">Pemeriksaan Lab Dilakukan?</div>
+            <div class="font-semibold text-slate-900">Jawaban: <span id="detLabAnswer"></span></div>
           </div>
           
-          <div id="detLabDetails" class="hidden space-y-2">
-            <div class="flex">
-              <div class="w-48 text-slate-600">Laboratorium</div>
-              <div id="detLaboratory" class="flex-1 font-semibold text-slate-900"></div>
+          <div id="detLabDetails" class="hidden space-y-3">
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Laboratorium</div>
+              <div id="detLaboratory" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Jenis Spesimen</div>
-              <div id="detSpecimenType" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Jenis Spesimen</div>
+              <div id="detSpecimenType" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">ID Spesimen</div>
-              <div id="detSpecimenId" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">ID Spesimen</div>
+              <div id="detSpecimenId" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Tanggal Pengambilan</div>
-              <div id="detCollectionDate" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Tanggal Pengambilan</div>
+              <div id="detCollectionDate" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Tanggal Hasil</div>
-              <div id="detResultDate" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Tanggal Hasil</div>
+              <div id="detResultDate" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Metode Pemeriksaan</div>
-              <div id="detExamMethod" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Metode Pemeriksaan</div>
+              <div id="detExamMethod" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Peralatan</div>
-              <div id="detEquipment" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Peralatan</div>
+              <div id="detEquipment" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Bahan Habis Pakai (Reagen)</div>
-              <div id="detReagent" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Bahan Habis Pakai (Reagen)</div>
+              <div id="detReagent" class="font-semibold text-slate-900"></div>
             </div>
             
-            <div class="flex">
-              <div class="w-48 text-slate-600">Hasil Pemeriksaan</div>
-              <div id="detExamResult" class="flex-1 font-semibold text-slate-900"></div>
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Hasil Pemeriksaan</div>
+              <div id="detExamResult" class="font-semibold text-slate-900"></div>
             </div>
           </div>
         </div>
@@ -809,8 +866,7 @@
       <div id="toastMsg" class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-card text-sm"></div>
     </div>
   </main>
-
-  <!-- Script: ADM (wilayah lengkap Bali, Sumbar, NTT) -->
+  <!-- Script: ADM dengan kelurahan (contoh untuk beberapa kecamatan) -->
   <script>
     const ADM = {
       // PROVINSI BALI (Kode: 51)
@@ -819,217 +875,298 @@
         kab: { 
           "5101": { 
             name: "KAB. JEMBRANA", 
-            kec: ["Melaya", "Negara", "Jembrana", "Mendoyo", "Pekutatan"]
+            kec: {
+              "Melaya": ["Melaya", "Tuwed", "Dangin Tukadaya", "Gilimanuk", "Ekasari", "Warnasari", "Manistutu", "Kaliakah"],
+              "Negara": ["Banjar Tengah", "Banjar Jawa", "Lelateng", "Pendem", "Kaliuntu", "Baluk", "Dauhwaru", "Banyubiru"],
+              "Jembrana": ["Tegal Badeng", "Pergung", "Sangkaragung", "Dangin Tukadaya Tengah", "Yehembang"],
+              "Mendoyo": ["Mendoyo Dangin Tukad", "Mendoyo Dauh Tukad", "Penyaringan", "Delod Berawah", "Yeh Sumbul"],
+              "Pekutatan": ["Pekutatan", "Manggissari", "Pangyangan", "Gumbrih", "Medewi"]
+            }
           },
           "5102": { 
             name: "KAB. TABANAN", 
-            kec: ["Selemadeg", "Selemadeg Timur", "Selemadeg Barat", "Kerambitan", "Tabanan", "Kediri", "Marga", "Baturiti", "Penebel", "Pupuan"]
+            kec: {
+              "Selemadeg": ["Bajera", "Beraban", "Megati", "Pupuan Sawah", "Tangguntiti", "Antap", "Wanagiri"],
+              "Selemadeg Timur": ["Gadungan", "Lalanglinggah", "Mundeh", "Mundeh Kangin", "Tegal Mengkeb"],
+              "Selemadeg Barat": ["Angkah", "Bajera Utara", "Bantas", "Dalang", "Galungan"],
+              "Kerambitan": ["Baturiti", "Kelating", "Kerambitan", "Kesiut", "Kukuh", "Meliling"],
+              "Tabanan": ["Bongan", "Dauh Paken", "Delod Peken", "Denbantas", "Gubug", "Subamia", "Sudimara"],
+              "Kediri": ["Banjar Anyar", "Buwit", "Cepaka", "Kediri", "Nyambu", "Pandak Bandung", "Pandak Gede"],
+              "Marga": ["Marga", "Marga Dajan Puri", "Marga Dauh Puri", "Sanggulan", "Selanbawak", "Tua", "Kukuh"],
+              "Baturiti": ["Antapan", "Apuan", "Batunya", "Baturiti", "Candikuning", "Luwus", "Mekarsari"],
+              "Penebel": ["Jatiluwih", "Penatahan", "Penebel", "Sangketan", "Senganan", "Tana Lot"],
+              "Pupuan": ["Batungsel", "Karya Sari", "Kebon Padang", "Munduk Temu", "Pajahan", "Pupuan"]
+            }
           },
           "5103": { 
             name: "KAB. BADUNG", 
-            kec: ["Kuta", "Kuta Selatan", "Kuta Utara", "Mengwi", "Abiansemal", "Petang"]
+            kec: {
+              "Kuta": ["Kuta", "Kedonganan", "Tuban", "Legian", "Seminyak"],
+              "Kuta Selatan": ["Benoa", "Jimbaran", "Kutuh", "Pecatu", "Tanjung Benoa", "Ungasan"],
+              "Kuta Utara": ["Canggu", "Dalung", "Kerobokan", "Kerobokan Kelod", "Sempidi", "Tibubeneng"],
+              "Mengwi": ["Abianbase", "Kapal", "Kekeran", "Mengwi", "Pererenan", "Sading", "Sembung"],
+              "Abiansemal": ["Abiansemal", "Angantaka", "Baha", "Blahkiuh", "Dalung", "Darmasaba", "Jagapati"],
+              "Petang": ["Belok", "Getasan", "Pangsan", "Petang", "Sulangai"]
+            }
           },
           "5104": { 
             name: "KAB. GIANYAR", 
-            kec: ["Sukawati", "Blahbatuh", "Gianyar", "Tampaksiring", "Ubud", "Tegallalang", "Payangan"]
+            kec: {
+              "Sukawati": ["Batuan", "Batubulan", "Celuk", "Guwang", "Ketewel", "Singapadu", "Sukawati"],
+              "Blahbatuh": ["Beng", "Blahbatuh", "Bedulu", "Buruan", "Keramas", "Medahan", "Saba"],
+              "Gianyar": ["Bitera", "Gianyar", "Petak Kaja", "Samplangan", "Siangan", "Sumita", "Tegal Tugu"],
+              "Tampaksiring": ["Manukaya", "Pejeng", "Pejeng Kaja", "Pejeng Kangin", "Sanding", "Tampaksiring"],
+              "Ubud": ["Kedewatan", "Lodtunduh", "Mas", "Peliatan", "Petulu", "Sayan", "Singakerta", "Ubud"],
+              "Tegallalang": ["Kedisan", "Kenderan", "Pupuan", "Taro", "Tegallalang"],
+              "Payangan": ["Buahan", "Buahan Kaja", "Bukian", "Kerta", "Melinggih", "Payangan"]
+            }
           },
           "5105": { 
             name: "KAB. KLUNGKUNG", 
-            kec: ["Nusa Penida", "Banjarangkan", "Klungkung", "Dawan"]
+            kec: {
+              "Nusa Penida": ["Batukandik", "Batumadeg", "Bunga Mekar", "Klumpu", "Lembongan", "Ped", "Sakti", "Suana"],
+              "Banjarangkan": ["Banjarangkan", "Batubulan Kangin", "Timuhun", "Tihingan", "Tohpati"],
+              "Klungkung": ["Gelgel", "Kamasan", "Semarapura Kaja", "Semarapura Kangin", "Semarapura Kelod", "Tojan"],
+              "Dawan": ["Besan", "Budaga", "Dawan Kaler", "Dawan Kelod", "Jumpai", "Kusamba", "Pikat"]
+            }
           },
           "5106": { 
             name: "KAB. BANGLI", 
-            kec: ["Susut", "Bangli", "Tembuku", "Kintamani"]
+            kec: {
+              "Susut": ["Abuan", "Apuan", "Demulih", "Pengiangan", "Selat", "Sulahan", "Susut"],
+              "Bangli": ["Bebalang", "Bunutin", "Cempaga", "Kayubihi", "Kubu", "Landih", "Pengotan"],
+              "Tembuku": ["Bangbang", "Jehem", "Peninjoan", "Tembuku", "Undisan", "Yangapi"],
+              "Kintamani": ["Abang Songan", "Awan", "Batur Selatan", "Batur Tengah", "Batur Utara", "Bayung Gede", "Catur"]
+            }
           },
           "5107": { 
             name: "KAB. KARANGASEM", 
-            kec: ["Rendang", "Sidemen", "Manggis", "Karangasem", "Abang", "Bebandem", "Selat", "Kubu"]
+            kec: {
+              "Rendang": ["Bebandem", "Menanga", "Nongan", "Pempatan", "Pesaban", "Rendang"],
+              "Sidemen": ["Parangtritis", "Sidemen", "Tangkup", "Telagatawang", "Wisma Kerta"],
+              "Manggis": ["Antiga", "Getakan", "Manggis", "Ngis", "Padangbai", "Selumbung", "Sengkidu"],
+              "Karangasem": ["Bugbug", "Karangasem", "Pertima", "Seraya", "Seraya Barat", "Subagan"],
+              "Abang": ["Abang", "Bunutan", "Culik", "Datah", "Kesimpar", "Labasari", "Tista"],
+              "Bebandem": ["Bebandem", "Bungbungan", "Macang", "Sibetan", "Timbrah"],
+              "Selat": ["Duda", "Dukuh", "Muncan", "Pering Sari", "Selat"],
+              "Kubu": ["Ban", "Baturinggit", "Dukuh", "Kubu", "Sukadana", "Tianyar Barat", "Tianyar Tengah"]
+            }
           },
           "5108": { 
             name: "KAB. BULELENG", 
-            kec: ["Gerokgak", "Seririt", "Busungbiu", "Banjar", "Sukasada", "Buleleng", "Sawan", "Kubutambahan", "Tejakula"]
+            kec: {
+              "Gerokgak": ["Gerokgak", "Musi", "Patas", "Pejarakan", "Pemuteran", "Sumber Kelampok", "Tinga-Tinga"],
+              "Seririt": ["Angsa", "Bestala", "Busungbiu", "Joanyar", "Kalianget", "Lokapaksa", "Ringdikit"],
+              "Busungbiu": ["Bengkel", "Busungbiu", "Kekeran", "Pucaksari", "Sepang", "Subuk", "Tigawasa"],
+              "Banjar": ["Banjar", "Banjar Tegeha", "Banyuatis", "Dencarik", "Kayuputih", "Munduk", "Pedawa"],
+              "Sukasada": ["Ambengan", "Gitgit", "Panji", "Panji Anom", "Pegadungan", "Sambangan", "Sukasada"],
+              "Buleleng": ["Alasangker", "Astina", "Banjar Bali", "Banyuasri", "Beratan", "Kampung Baru", "Kaliuntu"],
+              "Sawan": ["Bungkulan", "Galungan", "Gringsing", "Jagaraga", "Sangsit", "Sawan", "Sudaji"],
+              "Kubutambahan": ["Bengkala", "Bontihing", "Gobleg", "Kubutambahan", "Kaliasem", "Tamblang", "Timpag"],
+              "Tejakula": ["Julah", "Les", "Pacung", "Penuktukan", "Sambirenteng", "Sembiran", "Tejakula"]
+            }
           },
           "5171": { 
             name: "KOTA DENPASAR", 
-            kec: ["Denpasar Selatan", "Denpasar Timur", "Denpasar Barat", "Denpasar Utara"]
+            kec: {
+              "Denpasar Selatan": ["Dangin Puri", "Panjer", "Pedungan", "Pemogan", "Renon", "Sanur", "Sanur Kauh", "Sesetan", "Sidakarya"],
+              "Denpasar Timur": ["Dangin Puri Kangin", "Dangin Puri Kauh", "Kesiman", "Kesiman Kertalangu", "Kesiman Petilan", "Penatih", "Penatih Dangin Puri", "Sumerta", "Sumerta Kauh", "Sumerta Kelod"],
+              "Denpasar Barat": ["Dauh Puri", "Dauh Puri Kangin", "Dauh Puri Kauh", "Dauh Puri Kelod", "Padangsambian", "Padangsambian Kaja", "Padangsambian Kelod", "Pemecutan", "Pemecutan Kelod", "Tegal Harum", "Tegal Kerta"],
+              "Denpasar Utara": ["Dangin Puri Kaja", "Dangin Puri Klod", "Peguyangan", "Peguyangan Kaja", "Peguyangan Kangin", "Pemecutan Kaja", "Tonja", "Ubung", "Ubung Kaja"]
+            }
           }
         }
       },
       
-      // PROVINSI SUMATERA BARAT (Kode: 13)
+      // PROVINSI SUMATERA BARAT (Kode: 13) - Contoh beberapa kecamatan dengan kelurahan
       "13": { 
         name: "PROV. SUMATERA BARAT", 
         kab: { 
           "1301": { 
             name: "KAB. KEPULAUAN MENTAWAI", 
-            kec: ["Pagai Utara", "Pagai Selatan", "Sipora Utara", "Sipora Selatan", "Siberut Selatan", "Siberut Tengah", "Siberut Utara", "Siberut Barat", "Siberut Barat Daya", "Sikakap"]
+            kec: {
+              "Pagai Utara": ["Bulasat", "Madobak", "Sinaka", "Taikako"],
+              "Pagai Selatan": ["Betumonga", "Malakopa", "Matobe", "Sikakap"],
+              "Sipora Utara": ["Bosua", "Sabulou", "Saibi Samukop", "Sotboyak"],
+              "Sipora Selatan": ["Goisooinan", "Sioban", "Sipora Jaya", "Teteburuk"],
+              "Siberut Selatan": ["Bojakan", "Bubuakat", "Matotonan", "Muara Siberut"],
+              "Siberut Tengah": ["Bukit Pamewa", "Cempungan", "Madobag", "Muntei"],
+              "Siberut Utara": ["Maileppet", "Matotonan", "Rogdog", "Sirilogui"],
+              "Siberut Barat": ["Malancan", "Mailepet", "Saliguma", "Simatalu"],
+              "Siberut Barat Daya": ["Bojakan", "Madobag", "Mongan Poula", "Silabu"],
+              "Sikakap": ["Makalo", "Matobe", "Saumangnyai", "Sikakap"]
+            }
           },
           "1302": { 
             name: "KAB. PESISIR SELATAN", 
-            kec: ["Bayang", "Koto XI Tarusan", "Sutera", "Linggo Sari Baganti", "Lunang", "Basa Ampek Balai Tapan", "Pancung Soal", "Ranah Ampek Hulu Tapan", "Batang Kapas", "IV Jurai", "IV Nagari Bayang Utara", "Silaut", "Lengayang", "Ranah Pesisir", "Air Pura"]
+            kec: {
+              "Bayang": ["Bayang", "Kambang", "Pasar Bayang", "Sungai Duo"],
+              "Koto XI Tarusan": ["Kampung Baru", "Pasar Tarusan", "Surantih", "Tarusan"],
+              "Sutera": ["Koto Berapak", "Malai", "Sutera", "Taluak"],
+              "Linggo Sari Baganti": ["Air Haji", "Linggo Sari Baganti", "Pasar Lama", "Sungai Kunyit"],
+              "Lunang": ["Batu Hampar", "Inderapura", "Lunang Silaut", "Pasar Baru"],
+              "Basa Ampek Balai Tapan": ["Balai Tapan", "Gurun Panjang", "Mandiangin", "Silaping"],
+              "Pancung Soal": ["Air Bangis", "Carocok Anau", "Pancung Soal", "Sungai Nyalo"],
+              "Ranah Ampek Hulu Tapan": ["Kampung Baru", "Pasar Tapan", "Sungai Dareh", "Tapan"],
+              "Batang Kapas": ["Batang Kapas", "Pasar Lama", "Sungai Nipah", "Ujung Gading"],
+              "IV Jurai": ["Koto Baru", "Koto Nan IV", "Pasar IV Jurai", "Singgalang"],
+              "IV Nagari Bayang Utara": ["Bayang", "Kambang Utara", "Pasar Baru", "Sungai Pinang"],
+              "Silaut": ["Koto Baru", "Painan", "Silaut", "Tanjung Betung"],
+              "Lengayang": ["Air Dingin", "Lengayang", "Pasar Lengayang", "Sungai Sirah"],
+              "Ranah Pesisir": ["Ampang Pulai", "Kambang", "Mandeh", "Sungai Pinang"],
+              "Air Pura": ["Air Pura", "Pasar Lama", "Sungai Gambir", "Tanjung Simalidu"]
+            }
           },
           "1303": { 
             name: "KAB. SOLOK", 
-            kec: ["Junjung Sirih", "Lembah Gumanti", "Pantai Cermin", "Hiliran Gumanti", "Gunung Talang", "Danau Kembar", "X Koto Singkarak", "X Koto Diatas", "Payung Sekaki", "Lembang Jaya", "Kubung", "Tigo Lurah", "IX Koto Sungai Lasi", "Bukit Sundi"]
-          },
-          "1304": { 
-            name: "KAB. SIJUNJUNG", 
-            kec: ["Sijunjung", "Tanjung Gadang", "Lubuk Tarok", "IV Nagari", "Kamang Baru", "Sumpur Kudus", "Koto VII", "Kupitan"]
-          },
-          "1305": { 
-            name: "KAB. TANAH DATAR", 
-            kec: ["X Koto", "Batipuh", "Batipuh Selatan", "Rambatan", "Lima Kaum", "Tanjung Emas", "Lintau Buo", "Lintau Buo Utara", "Sungayang", "Sungai Tarab", "Padang Ganting", "Pariangan", "Salimpaung", "Tanjung Baru"]
-          },
-          "1306": { 
-            name: "KAB. PADANG PARIAMAN", 
-            kec: ["Batang Anai", "Lubuk Alung", "Ulakan Tapakis", "Nan Sabaris", "2x11 Kayu Tanam", "2x11 Enam Lingkung", "Patamuan", "Padang Sago", "Enam Lingkung", "VII Koto Sungai Sarik", "V Koto Kampung Dalam", "V Koto Timur", "Sintuk Toboh Gadang", "Sungai Limau", "Sungai Geringging", "Batang Gasan"]
-          },
-          "1307": { 
-            name: "KAB. AGAM", 
-            kec: ["Tanjung Mutiara", "Lubuk Basung", "Ampek Nagari", "Tanjung Raya", "Banuhampu", "Sungai Puar", "IV Koto", "Kamang Magek", "Tilatang Kamang", "Matur", "IV Angkek", "Candung", "Baso", "Palupuh", "Palembayan", "Ampek Angkek"]
-          },
-          "1308": { 
-            name: "KAB. LIMA PULUH KOTA", 
-            kec: ["Harau", "Lareh Sago Halaban", "Situjuah Limo Nagari", "Suliki", "Gunuang Omeh", "Mungka", "Bukit Barisan", "Pangkalan Koto Baru", "Akabiluru", "Luak", "Kapur IX", "Payakumbuh"]
+            kec: {
+              "Junjung Sirih": ["Junjung Sirih", "Koto Baru", "Pasar Junjung", "Sungai Janiah"],
+              "Lembah Gumanti": ["Gumanti", "Koto Hilalang", "Pasar Gumanti", "Sungai Nanam"],
+              "Pantai Cermin": ["Pasar Cermin", "Pantai Cermin", "Sungai Limau", "Tanjung Alai"],
+              "Hiliran Gumanti": ["Gumanti Hilir", "Koto Gadang", "Pasar Hiliran", "Singkarak"],
+              "Gunung Talang": ["Bukit Sileh", "Gunung Talang", "Pasar Talang", "Sungai Janiah"],
+              "Danau Kembar": ["Danau Atas", "Danau Bawah", "Pasar Kembar", "Sungai Janiah"],
+              "X Koto Singkarak": ["Koto Baru", "Pasar Singkarak", "Singkarak", "Sumpur Kudus"],
+              "X Koto Diatas": ["Koto Diatas", "Pasar Atas", "Sungai Janiah", "Talang Babungo"],
+              "Payung Sekaki": ["Muaro Pingai", "Pasar Sekaki", "Payung Sekaki", "Sungai Janiah"],
+              "Lembang Jaya": ["Lembang Jaya", "Pasar Lembang", "Sungai Janiah", "Talang Babungo"],
+              "Kubung": ["Kubung", "Pasar Kubung", "Sungai Janiah", "Talang Babungo"],
+              "Tigo Lurah": ["Koto Baru", "Pasar Lurah", "Sungai Janiah", "Tigo Lurah"],
+              "IX Koto Sungai Lasi": ["Koto Baru", "Pasar Lasi", "Sungai Janiah", "Sungai Lasi"],
+              "Bukit Sundi": ["Bukit Sundi", "Pasar Sundi", "Sungai Janiah", "Talang Babungo"]
+            }
           },
           "1309": { 
             name: "KAB. PASAMAN", 
-            kec: ["Bonjol", "Lubuk Sikaping", "Simpang Alahan Mati", "Pasaman", "Mapat Tunggul", "Mapat Tunggul Selatan", "Panti", "Padang Gelugur", "Rao", "Rao Selatan", "Rao Utara", "Tigo Nagari"]
-          },
-          "1310": { 
-            name: "KAB. SOLOK SELATAN", 
-            kec: ["Sangir", "Sangir Jujuan", "Sangir Balai Janggo", "Sungai Pagu", "Koto Parik Gadang Diateh", "Pauh Duo", "IV Nagari"]
-          },
-          "1311": { 
-            name: "KAB. DHARMASRAYA", 
-            kec: ["Koto Baru", "Sungai Rumbai", "Timpeh", "Pulau Punjung", "Padang Lawas", "Koto Salak", "Asam Jujuhan", "IX Koto", "Sitiung", "Koto Besar", "Tiumang"]
-          },
-          "1312": { 
-            name: "KAB. PASAMAN BARAT", 
-            kec: ["Sungai Beremas", "Ranah Batahan", "Kinali", "Gunung Tuleh", "Talamau", "Sei Aur", "Luhak Nan Duo", "Sasak Ranah Pasisie", "Koto Balingka", "Lembah Melintang", "Pasaman"]
+            kec: {
+              "Bonjol": ["Bonjol", "Koto Baru", "Pasar Bonjol", "Sungai Aur"],
+              "Lubuk Sikaping": ["Lubuk Sikaping", "Pasar Sikaping", "Sungai Aur", "Tanjung Alai"],
+              "Simpang Alahan Mati": ["Alahan Mati", "Pasar Simpang", "Simpang Alahan", "Sungai Aur"],
+              "Pasaman": ["Koto Baru", "Pasar Pasaman", "Pasaman", "Sungai Aur"],
+              "Mapat Tunggul": ["Koto Baru", "Mapat Tunggul", "Pasar Tunggul", "Sungai Aur"],
+              "Mapat Tunggul Selatan": ["Koto Baru", "Mapat Selatan", "Pasar Selatan", "Sungai Aur"],
+              "Panti": ["Koto Baru", "Pasar Panti", "Panti", "Sungai Aur"],
+              "Padang Gelugur": ["Koto Baru", "Padang Gelugur", "Pasar Gelugur", "Sungai Aur"],
+              "Rao": ["Koto Baru", "Pasar Rao", "Rao", "Sungai Aur"],
+              "Rao Selatan": ["Koto Baru", "Pasar Selatan", "Rao Selatan", "Sungai Aur"],
+              "Rao Utara": ["Koto Baru", "Pasar Utara", "Rao Utara", "Sungai Aur"],
+              "Tigo Nagari": ["Koto Baru", "Pasar Tigo", "Sungai Aur", "Tigo Nagari"]
+            }
           },
           "1371": { 
             name: "KOTA PADANG", 
-            kec: ["Bungus Teluk Kabung", "Lubuk Kilangan", "Lubuk Begalung", "Padang Selatan", "Padang Timur", "Padang Barat", "Padang Utara", "Nanggalo", "Kuranji", "Pauh", "Koto Tangah"]
+            kec: {
+              "Bungus Teluk Kabung": ["Bungus Barat", "Bungus Selatan", "Bungus Timur", "Teluk Kabung Selatan", "Teluk Kabung Tengah", "Teluk Kabung Utara"],
+              "Lubuk Kilangan": ["Bandar Buat", "Batu Busuk", "Indarung", "Koto Lalang", "Lubuk Kilangan", "Lubuk Minturun", "Tarantang"],
+              "Lubuk Begalung": ["Batipuh Panjang", "Kampung Jua", "Koto Baru", "Kuranji", "Parak Lawas", "Pegambiran", "Pisang"],
+              "Padang Selatan": ["Batang Arau", "Flamboyan Baru", "Pasa Gadang", "Seberang Padang", "Seberang Palinggam", "Teluk Bayur"],
+              "Padang Timur": ["Jati", "Kubu Marapalam", "Kurao Pagang", "Parak Gadang Timur", "Sawahan Timur", "Simpang Haru"],
+              "Padang Barat": ["Belakang Tangsi", "Kampung Jao", "Kampung Pondok", "Purus", "Rimbo Kaluang", "Olo"],
+              "Padang Utara": ["Air Tawar Barat", "Air Tawar Timur", "Alai Parak Kopi", "Gunung Pangilun", "Lolong Belanti", "Ulak Karang Selatan"],
+              "Nanggalo": ["Gurun Laweh", "Kampung Lapai", "Kampung Olo", "Kurao Pagang", "Surau Gadang", "Tabing"],
+              "Kuranji": ["Andalas", "Gunung Sarik", "Kalumbuk", "Korong Gadang", "Kuranji", "Pasar Ambacang", "Sungai Sapih"],
+              "Pauh": ["Binuang Kampung Dalam", "Kapalo Koto", "Koto Luar", "Lambung Bukit", "Limau Manis", "Pauh", "Pisang"],
+              "Koto Tangah": ["Air Pacah", "Batang Kabung Ganting", "Batipuh", "Dadok Tunggul Hitam", "Koto Panjang Ikua Koto", "Lubuk Buaya", "Pasie Nan Tigo"]
+            }
           },
           "1372": { 
             name: "KOTA SOLOK", 
-            kec: ["Lubuk Sikarah", "Tanjung Harapan"]
+            kec: {
+              "Lubuk Sikarah": ["IX Korong", "Kampung Jawa", "Koto Panjang", "Tanah Garam"],
+              "Tanjung Harapan": ["Air Dingin", "Kayu Aro", "Simpang Rumbio", "Tanah Garam Selatan"]
+            }
           },
           "1373": { 
             name: "KOTA SAWAHLUNTO", 
-            kec: ["Lembah Segar", "Talawi", "Barangin", "Silungkang"]
-          },
-          "1374": { 
-            name: "KOTA PADANG PANJANG", 
-            kec: ["Padang Panjang Barat", "Padang Panjang Timur"]
-          },
-          "1375": { 
-            name: "KOTA BUKITTINGGI", 
-            kec: ["Guguk Panjang", "Mandiangin Koto Selayan", "Aur Birugo Tigo Baleh"]
-          },
-          "1376": { 
-            name: "KOTA PAYAKUMBUH", 
-            kec: ["Payakumbuh Barat", "Payakumbuh Timur", "Payakumbuh Utara", "Payakumbuh Selatan", "Lamposi Tigo Nagori"]
-          },
-          "1377": { 
-            name: "KOTA PARIAMAN", 
-            kec: ["Pariaman Tengah", "Pariaman Utara", "Pariaman Selatan", "Pariaman Timur"]
+            kec: {
+              "Lembah Segar": ["Kolok Nan Tuo", "Lembah Segar", "Santur", "Sapan"],
+              "Talawi": ["Air Dingin", "Salak", "Sawah Lunto", "Talawi Hilir"],
+              "Barangin": ["Barangin", "Muaro Kalaban", "Pasar", "Tanah Lapang"],
+              "Silungkang": ["Kubang Sirakuk", "Pasar Silungkang", "Silungkang Oso", "Silungkang Tigo"]
+            }
           }
         }
       },
       
-      // PROVINSI NUSA TENGGARA TIMUR (Kode: 53)
+      // PROVINSI NUSA TENGGARA TIMUR (Kode: 53) - Contoh beberapa kecamatan dengan kelurahan
       "53": { 
         name: "PROV. NUSA TENGGARA TIMUR", 
         kab: { 
           "5301": { 
             name: "KAB. SUMBA BARAT", 
-            kec: ["Kota Waikabubak", "Loli", "Tana Righu", "Wanokaka"]
+            kec: {
+              "Kota Waikabubak": ["Bukambero", "Kambaniru", "Mau Hau", "Praing Kareha", "Waikabubak"],
+              "Loli": ["Bondo Kodi", "Gallu Bakul", "Loli Darat", "Loli Tasamu", "Wee Luri"],
+              "Tana Righu": ["Kalena Rongo", "Lakoka Jaya", "Praibakul", "Tana Modu", "Waihura"],
+              "Wanokaka": ["Kadi Wejewa", "Palakahembi", "Ratenggaro", "Waitabula", "Wanokaka"]
+            }
           },
           "5302": { 
             name: "KAB. SUMBA TIMUR", 
-            kec: ["Kambera", "Haharu", "Umalulu", "Pahunga Lodu", "Karera", "Katala Hamu Lingu", "Ngadu Ngala", "Nggaha Ori Angu", "Pinupahar", "Waijelu", "Kambata Mapambuhang", "Wula Waijelu", "Pandawai", "Paberiwai", "Wulla Wai Jilu", "Kahaungu Eti", "Matawai La Pawu", "Kanatang", "Rindi", "Pahunga Lodu", "Pinu Pahar", "Tabundung"]
+            kec: {
+              "Kambera": ["Kambera", "Kambaniru", "Laindatang", "Melolo", "Prailiu"],
+              "Haharu": ["Haharu", "Kambata Bundung", "Lailunggi", "Paberiwai", "Ramuk"],
+              "Umalulu": ["Kadahang", "Kambata Tana", "Lewa", "Umalulu", "Waingapu"],
+              "Pahunga Lodu": ["Kambata Loku", "Loku Ranggabaki", "Mahu", "Pahunga Lodu", "Wunga"],
+              "Karera": ["Karera", "Katikuloku", "Matawai Maringu", "Panenggo Ede", "Rindi"],
+              "Katala Hamu Lingu": ["Hamu Lingu", "Katiku Tana", "Kuta Malo", "Lambanapu", "Tabundung"],
+              "Ngadu Ngala": ["Kabaru", "Kambata Bundung", "Katikutana", "Ngadu Ngala", "Rada Mai"],
+              "Nggaha Ori Angu": ["Kambatawulu", "Nggaha", "Ori Angu", "Prailiu", "Watu Hadang"],
+              "Pinupahar": ["Kabunduk", "Kataka", "Pinupahar", "Prai Bakul", "Rambangaru"],
+              "Waijelu": ["Kawangu", "Kambera Kaha", "Tebara", "Waijelu", "Watu Hadang"],
+              "Kambata Mapambuhang": ["Kambata", "Kawangu", "Mapambuhang", "Prai Klembung", "Wunga"],
+              "Wula Waijelu": ["Kambatatana", "Kanganara", "Panenggo Ede", "Waijelu", "Wula"],
+              "Pandawai": ["Kadahang", "Kanatang", "Pandawai", "Rambangaru", "Tebara"],
+              "Paberiwai": ["Kamanggih", "Paberiwai", "Rambangaru", "Tana Maluru", "Watu Hadang"],
+              "Wulla Wai Jilu": ["Kambaniru", "Katikuloku", "Lailunggi", "Wulla", "Wai Jilu"],
+              "Kahaungu Eti": ["Eti", "Kahaungu", "Kanatang", "Prai Karoku", "Watu Hadang"],
+              "Matawai La Pawu": ["La Pawu", "Lewa Paku", "Mahu", "Matawai", "Watu Hadang"],
+              "Kanatang": ["Kanatang", "Kawangu", "Prai Karoku", "Rambangaru", "Watu Hadang"],
+              "Rindi": ["Lailunggi", "Matawai", "Praibakul", "Rindi", "Watu Hadang"],
+              "Pahunga Lodu": ["Kambata Loku", "Loku Ranggabaki", "Mahu", "Pahunga Lodu", "Wunga"],
+              "Pinu Pahar": ["Kabunduk", "Kataka", "Pinu Pahar", "Praibakul", "Watu Hadang"],
+              "Tabundung": ["Katikuloku", "Lambanapu", "Tabundung", "Watu Hadang", "Wunga"]
+            }
           },
           "5303": { 
             name: "KAB. KUPANG", 
-            kec: ["Semau", "Semau Selatan", "Kupang Barat", "Kupang Tengah", "Kupang Timur", "Sulamu", "Taebenu", "Amarasi", "Amarasi Barat", "Amarasi Selatan", "Amarasi Timur", "Fatuleu", "Takari", "Amfoang Selatan", "Amfoang Utara", "Nekamese", "Amabi Oefeto Timur", "Amabi Oefeto", "Kuatnana", "Amfoang Barat Daya", "Amfoang Barat Laut", "Amfoang Timur", "Tobu", "Fatumnasi"]
-          },
-          "5304": { 
-            name: "KAB. TIMOR TENGAH SELATAN", 
-            kec: ["Amanatun Selatan", "Amanatun Utara", "Mollo Selatan", "Mollo Utara", "Mollo Barat", "Kok Baun", "Miomaffo Barat", "Miomaffo Tengah", "Miomaffo Timur", "Naibenu", "Nunkolo", "Polen", "Batu Putih", "Boking", "Toianas", "Kolbano", "Kuatnana", "Mollo Tengah", "Santian", "Noebeba", "Kuanfatu", "Fatumnasi", "Mollo Barat Daya", "Tobu", "Noebana", "Kot Olin", "Kualin", "Kolbano", "Amanuban Barat", "Amanuban Tengah", "Amanuban Timur", "Amanuban Selatan"]
-          },
-          "5305": { 
-            name: "KAB. TIMOR TENGAH UTARA", 
-            kec: ["Miomafo Timur", "Miomafo Barat", "Biboki Selatan", "Biboki Utara", "Biboki Tan Pah", "Biboki Moenleu", "Biboki Feotleu", "Biboki Anleu", "Noemuti", "Noemuti Timur", "Musi", "Mutis", "Miomaffo Tengah", "Bikomi Selatan", "Bikomi Tengah", "Bikomi Utara", "Bikomi Nilulat", "Naibenu", "Insana", "Insana Utara", "Insana Tengah", "Insana Barat", "Insana Fafinesu", "Noemuti Barat"]
-          },
-          "5306": { 
-            name: "KAB. BELU", 
-            kec: ["Tasifeto Timur", "Tasifeto Barat", "Kakuluk Mesak", "Raihat", "Raimanuk", "Lamaknen", "Lasiolat", "Lamaknen Selatan", "Kobalima", "Kobalima Timur", "Malaka Timur", "Malaka Tengah", "Rinhat", "Weliman", "Atambua Barat", "Atambua Selatan", "Atambua Kota"]
-          },
-          "5307": { 
-            name: "KAB. ALOR", 
-            kec: ["Alor Barat Laut", "Alor Barat Daya", "Alor Selatan", "Alor Timur", "Alor Timur Laut", "Pantar", "Pantar Barat", "Pantar Timur", "Pulau Pura", "Mataru", "Pureman", "Kabola", "Lembur", "Teluk Mutiara", "Pantar Tengah", "Pantar Barat Laut", "Alor Tengah Utara"]
-          },
-          "5308": { 
-            name: "KAB. LEMBATA", 
-            kec: ["Nubatukan", "Atadei", "Ile Ape", "Lebatukan", "Naga Wutung", "Omesuri", "Buyasuri", "Wulandoni"]
-          },
-          "5309": { 
-            name: "KAB. FLORES TIMUR", 
-            kec: ["Wotan Ulumado", "Ile Boleng", "Tanjung Bunga", "Witihama", "Ile Bura", "Demon Pagong", "Wulanggitang", "Titehena", "Larantuka", "Ile Mandiri", "Solor Barat", "Solor Timur", "Solor Selatan", "Adonara Barat", "Wotan Ulumado", "Adonara Timur", "Adonara Tengah", "Kelubagolit", "Adonara", "Ile Boleng"]
-          },
-          "5310": { 
-            name: "KAB. SIKKA", 
-            kec: ["Paga", "Mego", "Lela", "Nita", "Alok", "Alok Barat", "Alok Timur", "Palue", "Nelle", "Talibura", "Waigete", "Kewapante", "Bola", "Magepanda", "Waigete", "Hewokloang", "Kangae", "Mapitara", "Doreng", "Waiblama"]
-          },
-          "5311": { 
-            name: "KAB. ENDE", 
-            kec: ["Maurole", "Nangapanda", "Pulau Ende", "Ende", "Ende Selatan", "Ende Timur", "Ende Tengah", "Ende Utara", "Ndona", "Ndona Timur", "Detusoko", "Wewaria", "Wolowaru", "Wolojita", "Lio Timur", "Maukaro", "Kelimutu", "Detukeli", "Ndori", "Kotabaru", "Wewaria"]
-          },
-          "5312": { 
-            name: "KAB. NGADA", 
-            kec: ["Bajawa", "Golewa", "Bajawa Utara", "Riung", "Riung Barat", "Soa", "Aimere", "Inerie", "Jerebuu"]
-          },
-          "5313": { 
-            name: "KAB. MANGGARAI", 
-            kec: ["Reok", "Ruteng", "Satar Mese", "Langke Rembong", "Cibal", "Wae Rii", "Rahong Utara", "Compang"]
-          },
-          "5314": { 
-            name: "KAB. ROTE NDAO", 
-            kec: ["Rote Barat", "Rote Barat Daya", "Rote Barat Laut", "Rote Selatan", "Rote Tengah", "Rote Timur", "Pantai Baru", "Lobalain", "Landu Leko", "Ndao Nuse"]
-          },
-          "5315": { 
-            name: "KAB. MANGGARAI BARAT", 
-            kec: ["Komodo", "Sano Nggoang", "Mbeliling", "Lembor", "Lembor Selatan", "Welak", "Macang Pacar", "Boleng", "Kuwus", "Ndoso"]
-          },
-          "5316": { 
-            name: "KAB. SUMBA TENGAH", 
-            kec: ["Katikutana", "Katikutana Selatan", "Mamboro", "Umbu Ratu Nggay", "Umbu Ratu Nggay Barat"]
-          },
-          "5317": { 
-            name: "KAB. SUMBA BARAT DAYA", 
-            kec: ["Kota Tambolaka", "Wanokaka", "Lamboya", "Kodi", "Kodi Utara", "Kodi Bangedo", "Loura"]
-          },
-          "5318": { 
-            name: "KAB. NAGEKEO", 
-            kec: ["Aesesa", "Aesesa Selatan", "Nangaroro", "Mauponggo", "Wolowae", "Boawae", "Keo Tengah"]
-          },
-          "5319": { 
-            name: "KAB. MANGGARAI TIMUR", 
-            kec: ["Borong", "Elar", "Poco Ranaka", "Sambi Rampas", "Kota Komba", "Lamba Leda", "Rana Mese"]
-          },
-          "5320": { 
-            name: "KAB. SABU RAIJUA", 
-            kec: ["Sabu Barat", "Sabu Timur", "Sabu Tengah", "Sabu Liae", "Hawu Mehara", "Raijua"]
-          },
-          "5321": { 
-            name: "KAB. MALAKA", 
-            kec: ["Malaka Tengah", "Malaka Barat", "Rinhat", "Weliman", "Wewiku", "Laenmanen", "Io Kufeu", "Kobalima Timur", "Botin Leobele", "Sasitamean"]
+            kec: {
+              "Semau": ["Semau Barat", "Semau Selatan", "Semau Timur", "Uiasa", "Uitiuh"],
+              "Semau Selatan": ["Hanes", "Hansisi", "Uitiuh Selatan", "Uiasa Selatan"],
+              "Kupang Barat": ["Oelnasi", "Oesao", "Tesabela", "Tuatuka"],
+              "Kupang Tengah": ["Bokong", "Camplong", "Oelnasi Tengah", "Oeteta"],
+              "Kupang Timur": ["Bolok", "Oebelo", "Oelnasi Timur", "Tablolong"],
+              "Sulamu": ["Oeltua", "Oelnasi", "Sulamu", "Tuatuka"],
+              "Taebenu": ["Oelnasi", "Oeltua", "Taebenu", "Tuatuka"],
+              "Amarasi": ["Baun", "Nononot", "Oelnasi", "Tarus"],
+              "Amarasi Barat": ["Baumata", "Baumata Barat", "Oelnasi", "Tarus Barat"],
+              "Amarasi Selatan": ["Baun Selatan", "Nononot Selatan", "Oelnasi", "Tarus Selatan"],
+              "Amarasi Timur": ["Baun Timur", "Nononot Timur", "Oelnasi", "Tarus Timur"],
+              "Fatuleu": ["Fatuleu", "Oelnasi", "Tuatuka", "Uitao"],
+              "Takari": ["Oelnasi", "Takari", "Tuatuka", "Uitao"],
+              "Amfoang Selatan": ["Oelnasi", "Tuatuka", "Uitao", "Kapan"],
+              "Amfoang Utara": ["Oelnasi", "Tuatuka", "Uitao", "Kapan Utara"],
+              "Nekamese": ["Nekamese", "Oelnasi", "Tuatuka", "Uitao"],
+              "Amabi Oefeto Timur": ["Oelnasi", "Oefeto", "Tuatuka", "Uitao"],
+              "Amabi Oefeto": ["Oefeto", "Oelnasi", "Tuatuka", "Uitao"],
+              "Kuatnana": ["Kuatnana", "Oelnasi", "Tuatuka", "Uitao"],
+              "Amfoang Barat Daya": ["Oelnasi", "Tuatuka", "Uitao", "Kapan"],
+              "Amfoang Barat Laut": ["Oelnasi", "Tuatuka", "Uitao", "Kapan"],
+              "Amfoang Timur": ["Oelnasi", "Tuatuka", "Uitao", "Kapan Timur"],
+              "Tobu": ["Oelnasi", "Tobu", "Tuatuka", "Uitao"],
+              "Fatumnasi": ["Fatumnasi", "Oelnasi", "Tuatuka", "Uitao"]
+            }
           },
           "5371": { 
             name: "KOTA KUPANG", 
-            kec: ["Alak", "Maulafa", "Kota Raja", "Kota Lama", "Kelapa Lima", "Oebobo"]
+            kec: {
+              "Alak": ["Alak", "Namosain", "Nunbaun Delha", "Nunbaun Sabu", "Penfui"],
+              "Maulafa": ["Fatululi", "Maulafa", "Naikoten I", "Naikoten II", "Oebufu"],
+              "Kota Raja": ["Bonipoi", "Fontein", "Nefonaek", "LLBK", "Kuanino"],
+              "Kota Lama": ["Airmata", "Fatufeto", "Kelapa Lima", "Oeba", "Oesapa"],
+              "Kelapa Lima": ["Kelapa Lima", "Lasiana", "Oebufu", "Oesapa Barat", "Oesapa Selatan"],
+              "Oebobo": ["Fatubesi", "Fatululi", "Oebobo", "Oebufu", "Tuak Daun Merah"]
+            }
           }
         }
       }
@@ -1038,8 +1175,8 @@
 
   <script>
     // ====== Global state ======
-    let view = 'menu'; // 'menu' | 'case' | 'patients' | 'patientDetail'
-    let step = 0; // case steps 0..4
+    let view = 'menu';
+    let step = 0;
     let selectedPatient = null;
 
     // DOM refs
@@ -1080,7 +1217,6 @@
     });
 
     function showView(){
-      // toggle screens
       viewMenu.classList.toggle('hidden', view!=='menu');
       document.getElementById('sec0').classList.toggle('hidden', !(view==='case' && step===0));
       document.getElementById('sec1').classList.toggle('hidden', !(view==='case' && step===1));
@@ -1090,7 +1226,6 @@
       viewPatients.classList.toggle('hidden', view!=='patients');
       viewPatientDetail.classList.toggle('hidden', view!=='patientDetail');
 
-      // header & progress
       if (view==='menu') {
         appTitle.textContent = 'Menu';
         progressWrap.classList.add('hidden');
@@ -1109,7 +1244,6 @@
         progressWrap.classList.add('hidden');
         footerCTA.classList.add('hidden');
         backBtn.classList.remove('opacity-50'); backBtn.disabled = false;
-        // Refresh daftar pasien setiap kali view dibuka
         renderPatients(searchEl.value);
       } else if (view==='patientDetail') {
         appTitle.textContent = 'Detail Pasien';
@@ -1135,12 +1269,15 @@
     const provEl = document.getElementById('prov');
     const kabEl = document.getElementById('kab');
     const kecEl = document.getElementById('kec');
-    const kelEl = document.getElementById('kel'); // <-- TAMBAHKAN INI
+    const kelEl = document.getElementById('kel');
     const alamatKejadianEl = document.getElementById('alamatKejadian');
 
     // Section 2 refs
+    const tanggalDigigit = document.getElementById('tanggalDigigit');
     const jenisHewan = document.getElementById('jenisHewan');
     const lokasiGigitan = document.getElementById('lokasiGigitan');
+    const kondisiLuka = document.getElementById('kondisiLuka');
+    const pengobatan = document.getElementById('pengobatan');
     const kategoriGigitan = document.getElementById('kategoriGigitan');
     const statusPemilik = document.getElementById('statusPemilik');
     const statusHewan = document.getElementById('statusHewan');
@@ -1165,17 +1302,23 @@
     function validStep0(){ return lapGigitan.checked; }
     function validStep1(){
       const nikOk = nikEl.value.length === 16;
-      const namaOk = namaLengkap.value.trim().length > 0;
-      const alamatOk = alamatKejadianEl.value.trim().length > 5;
-      const kecOk = kecEl.value !== '';
-      const kelOk = kelEl.value.trim().length > 0; // <-- TAMBAHKAN INI
-      return nikOk && namaOk && alamatOk && kecOk && kelOk; // <-- UBAH INI
+      const namaOk = namaLengkap.value.trim().length > 0;
+      const alamatOk = alamatKejadianEl.value.trim().length > 5;
+      const kecOk = kecEl.value !== '';
+      const kelOk = kelEl.value !== '';
+      return nikOk && namaOk && alamatOk && kecOk && kelOk;
     }
     function validStep2(){
-      const j = !!jenisHewan.value; const l = !!lokasiGigitan.value; const sp = !!statusPemilik.value; const sh = !!statusHewan.value;
+      const td = !!tanggalDigigit.value;
+      const j = !!jenisHewan.value; 
+      const l = !!lokasiGigitan.value; 
+      const kl = !!kondisiLuka.value;
+      const pg = !!pengobatan.value;
+      const sp = !!statusPemilik.value; 
+      const sh = !!statusHewan.value;
       const anySym = [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].some(cb=>cb.checked);
       symErr.classList.toggle('hidden', anySym);
-      return j && l && sp && sh && anySym; // kategoriGigitan tidak wajib
+      return td && j && l && kl && pg && sp && sh && anySym;
     }
     function validStep3(){ return !!hasLabRadios(); }
     function validStep4(){
@@ -1203,113 +1346,45 @@
     }
 
     nextBtn.addEventListener('click', () => {
-      console.log('=== TOMBOL NEXT DIKLIK ===');
-      console.log('Step saat ini:', step);
-      console.log('View saat ini:', view);
-      
-      if (step===0 && validStep0()) { 
-        console.log('Step 0 valid, pindah ke step 1');
-        step=1; showView(); updateCTA(); return; 
-      }
-      
-      if (step===1 && validStep1()) { 
-        console.log('Step 1 valid, pindah ke step 2');
-        step=2; showView(); updateCTA(); return; 
-      }
-      
-      if (step===2 && validStep2()) { 
-        console.log('Step 2 valid, pindah ke step 3');
-        step=3; showView(); updateCTA(); return; 
-      }
-      
+      if (step===0 && validStep0()) { step=1; showView(); updateCTA(); return; }
+      if (step===1 && validStep1()) { step=2; showView(); updateCTA(); return; }
+      if (step===2 && validStep2()) { step=3; showView(); updateCTA(); return; }
       if (step===3) {
-        console.log('=== DI STEP 3 (PEMERIKSAAN LAB) ===');
         const isValid = validStep3();
-        console.log('Step 3 valid?', isValid);
-        
         if (isValid) {
           const labRadio = hasLabRadios();
-          console.log('Radio yang dipilih:', labRadio);
           const ans = labRadio ? labRadio.value : null;
-          console.log('Jawaban lab:', ans);
-          
-          if (ans === 'ya') { 
-            console.log('Pilih Ya, lanjut ke step 4 (form lab)');
-            step=4; showView(); updateCTA(); return; 
-          }
-          
+          if (ans === 'ya') { step=4; showView(); updateCTA(); return; }
           if (ans === 'tidak') {
-            console.log('Pilih Tidak, akan submit tanpa lab');
-            console.log('Menampilkan dialog konfirmasi...');
-            
-            // Konfirmasi sebelum submit (tanpa lab)
             const konfirmasi = confirm('Apakah Anda yakin akan mengirim laporan kasus ini?');
-            console.log('Hasil konfirmasi:', konfirmasi);
-            
             if (konfirmasi) {
-              console.log('User mengkonfirmasi, menyimpan data...');
-              try {
-                savePatient();
-                console.log('Data berhasil disimpan!');
-                showToast('Data laporan kasus berhasil disimpan!');
-                resetCaseForm();
-                view='menu'; 
-                showView();
-                console.log('Kembali ke menu');
-              } catch (error) {
-                console.error('Error saat menyimpan:', error);
-                alert('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
-              }
-            } else {
-              console.log('User membatalkan konfirmasi');
-            }
-          }
-        } else {
-          console.log('Step 3 tidak valid - belum memilih radio button');
-        }
-        return;
-      }
-      
-      if (step===4) {
-        console.log('=== DI STEP 4 (HASIL LAB) ===');
-        const isValid = validStep4();
-        console.log('Step 4 valid?', isValid);
-        
-        if (isValid) {
-          console.log('Step 4 valid, akan submit dengan lab');
-          console.log('Menampilkan dialog konfirmasi...');
-          
-          // Konfirmasi sebelum submit (dengan lab)
-          const konfirmasi = confirm('Apakah Anda yakin akan mengirim laporan kasus dan hasil laboratorium ini?');
-          console.log('Hasil konfirmasi:', konfirmasi);
-          
-          if (konfirmasi) {
-            console.log('User mengkonfirmasi, menyimpan data...');
-            try {
               savePatient();
-              console.log('Data berhasil disimpan!');
-              showToast('Laporan kasus dan hasil lab berhasil disimpan!');
+              showToast('Data laporan kasus berhasil disimpan!');
               resetCaseForm();
               view='menu'; 
               showView();
-              console.log('Kembali ke menu');
-            } catch (error) {
-              console.error('Error saat menyimpan:', error);
-              alert('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
             }
-          } else {
-            console.log('User membatalkan konfirmasi');
           }
-        } else {
-          console.log('Step 4 tidak valid - masih ada field yang kosong');
+        }
+        return;
+      }
+      if (step===4) {
+        const isValid = validStep4();
+        if (isValid) {
+          const konfirmasi = confirm('Apakah Anda yakin akan mengirim laporan kasus dan hasil laboratorium ini?');
+          if (konfirmasi) {
+            savePatient();
+            showToast('Laporan kasus dan hasil lab berhasil disimpan!');
+            resetCaseForm();
+            view='menu'; 
+            showView();
+          }
         }
       }
     });
 
-    // Fungsi untuk menyimpan data pasien dan laporan kasus
     function savePatient() {
       const caseData = {
-        // Data Pasien
         inputDate: new Date().toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase(),
         nik: nikEl.value,
         name: namaLengkap.value.trim(),
@@ -1317,22 +1392,23 @@
         birthDate: dobEl.textContent,
         province: provEl.textContent,
         district: kabEl.textContent,
-        kec: kecEl.value,
-        kel: kelEl.value.trim(), // <-- TAMBAHKAN INI
+        kec: kecEl.value.toUpperCase(),
+        kel: kelEl.value.toUpperCase(),
         registeredAddress: alamatKejadianEl.value.trim(),
         residentialAddress: document.getElementById('alamatDomisili').value.trim(),
         phone: document.getElementById('telp').value.trim(),
         
-        // Data Kasus
         diagnosis: 'Gigitan Hewan Penular Rabies (GHPR)',
+        tanggalDigigit: tanggalDigigit.value ? new Date(tanggalDigigit.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
         animalType: jenisHewan.value,
         biteLocation: lokasiGigitan.value,
+        kondisiLuka: kondisiLuka.value,
+        pengobatan: pengobatan.value,
         biteCategory: kategoriGigitan.value || '-',
         animalOwnership: statusPemilik.value,
         animalStatus: statusHewan.value,
         symptoms: [...symptomsWrap.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value).join(', '),
         
-        // Data Lab
         hasLab: hasLabRadios()?.value || 'tidak',
         laboratory: labName.value || '-',
         specimenType: specimenType.value.trim() || '-',
@@ -1345,21 +1421,12 @@
         examResult: examResult.value || '-'
       };
       
-      console.log('Menyimpan data pasien:', caseData);
-      
-      // Cek apakah pasien dengan NIK ini sudah ada
       const existingIndex = patients.findIndex(p => p.nik === caseData.nik);
       if (existingIndex === -1) {
-        // Pasien baru, tambahkan ke array
         patients.push(caseData);
-        console.log('Pasien baru ditambahkan. Total pasien:', patients.length);
       } else {
-        // Update data pasien yang sudah ada
         patients[existingIndex] = caseData;
-        console.log('Data pasien diupdate. Total pasien:', patients.length);
       }
-      
-      console.log('Daftar semua pasien:', patients);
     }
 
     // Inputs -> recalc CTA
@@ -1373,48 +1440,30 @@
     }
     alamatKejadianEl.addEventListener('input', updateCTA);
     namaLengkap.addEventListener('input', updateCTA);
-    kecEl.addEventListener('change', updateCTA);
-    kelEl.addEventListener('input', updateCTA); // <-- TAMBAHKAN INI
-    [jenisHewan,lokasiGigitan,kategoriGigitan,statusPemilik,statusHewan].forEach(el=> el.addEventListener('change', updateCTA));
+    kecEl.addEventListener('change', ()=> { populateKelurahan(); updateCTA(); });
+    kelEl.addEventListener('change', updateCTA);
+    [tanggalDigigit,jenisHewan,lokasiGigitan,kondisiLuka,pengobatan,kategoriGigitan,statusPemilik,statusHewan].forEach(el=> el.addEventListener('change', updateCTA));
     symptomsWrap.addEventListener('change', updateCTA);
     document.addEventListener('change', (e)=>{ if(e.target.name==='hasLab') updateCTA(); });
 
-    // Event listener untuk checkbox "Sama dengan alamat lengkap kejadian"
-    // Ketika checkbox dicentang, copy alamat kejadian ke alamat domisili dan jadikan readonly
-    // Ketika checkbox di-uncheck, kosongkan alamat domisili dan kembalikan ke editable
     const sameAsKejadianCheckbox = document.getElementById('sameAsKejadian');
     const alamatDomisiliField = document.getElementById('alamatDomisili');
     
     sameAsKejadianCheckbox.addEventListener('change', function() {
-      console.log('Checkbox "Sama dengan alamat lengkap kejadian" berubah:', this.checked);
-      
       if (this.checked) {
-        // Checkbox dicentang - copy alamat kejadian ke alamat domisili
         const alamatKejadian = alamatKejadianEl.value.trim();
-        console.log('Mengisi alamat domisili dengan:', alamatKejadian);
         alamatDomisiliField.value = alamatKejadian;
-        
-        // Jadikan field alamat domisili readonly dan beri styling berbeda
         alamatDomisiliField.readOnly = true;
         alamatDomisiliField.classList.add('bg-slate-100', 'cursor-not-allowed');
-        console.log('Field alamat domisili dijadikan readonly');
       } else {
-        // Checkbox di-uncheck - kosongkan alamat domisili dan kembalikan ke editable
-        console.log('Mengosongkan alamat domisili');
         alamatDomisiliField.value = '';
-        
-        // Kembalikan field alamat domisili ke editable dan hilangkan styling readonly
         alamatDomisiliField.readOnly = false;
         alamatDomisiliField.classList.remove('bg-slate-100', 'cursor-not-allowed');
-        console.log('Field alamat domisili dikembalikan ke editable');
       }
     });
     
-    // Event listener untuk memperbarui alamat domisili ketika alamat kejadian berubah (jika checkbox tercentang)
-    // Ini memastikan jika user mengedit alamat kejadian setelah mencentang checkbox, alamat domisili juga ikut berubah
     alamatKejadianEl.addEventListener('input', function() {
       if (sameAsKejadianCheckbox.checked) {
-        console.log('Alamat kejadian berubah dan checkbox tercentang, update alamat domisili');
         alamatDomisiliField.value = this.value;
       }
     });
@@ -1423,20 +1472,83 @@
     // Helpers (NIK)
     function fmtDate(d){ return d.toLocaleDateString('id-ID',{day:'2-digit', month:'short', year:'numeric'}).toUpperCase(); }
     function calcUsia(dob){ const now=new Date(); let years=now.getFullYear()-dob.getFullYear(); let months=now.getMonth()-dob.getMonth(); let days=now.getDate()-dob.getDate(); if(days<0){months--;} if(months<0){years--; months+=12;} return {years, months}; }
-    function autofillFromNIK(nik){ const provCode=nik.slice(0,2); const kabCode=nik.slice(0,4); let dd=parseInt(nik.slice(6,8),10); const mm=parseInt(nik.slice(8,10),10); const yy=parseInt(nik.slice(10,12),10); let gender='Laki-laki'; if(dd>40){ dd-=40; gender='Perempuan'; } const nowYY=new Date().getFullYear()%100; const fullYear= yy<=nowYY ? 2000+yy : 1900+yy; const dob=new Date(fullYear, mm-1, dd); if(isNaN(dob.getTime())){ resetIdentity(); nikErr.classList.remove('hidden'); return; } dobEl.textContent=fmtDate(dob); const u=calcUsia(dob); ageEl.textContent=`${u.years} thn ${u.months} bln`; genderEl.textContent=gender; provEl.textContent= ADM[provCode]?.name || `Kode Provinsi ${provCode}`; kabEl.textContent= ADM[provCode]?.kab?.[kabCode]?.name || `Kode Kab/Kota ${kabCode}`; const kecList=(ADM[provCode]?.kab?.[kabCode]?.kec || []); kecEl.innerHTML=`<option value="">Pilih kecamatan…</option>` + kecList.map(k=>`<option value="${k}">${k}</option>`).join(''); }
-    function resetIdentity(){ dobEl.textContent='—'; ageEl.textContent='—'; genderEl.textContent='—'; provEl.textContent='—'; kabEl.textContent='—'; kecEl.innerHTML = `<option value="">Pilih kecamatan…</option>`; }
+    
+    function autofillFromNIK(nik){ 
+      const provCode=nik.slice(0,2); 
+      const kabCode=nik.slice(0,4); 
+      let dd=parseInt(nik.slice(6,8),10); 
+      const mm=parseInt(nik.slice(8,10),10); 
+      const yy=parseInt(nik.slice(10,12),10); 
+      let gender='Laki-laki'; 
+      if(dd>40){ dd-=40; gender='Perempuan'; } 
+      const nowYY=new Date().getFullYear()%100; 
+      const fullYear= yy<=nowYY ? 2000+yy : 1900+yy; 
+      const dob=new Date(fullYear, mm-1, dd); 
+      if(isNaN(dob.getTime())){ resetIdentity(); nikErr.classList.remove('hidden'); return; } 
+      dobEl.textContent=fmtDate(dob); 
+      const u=calcUsia(dob); 
+      ageEl.textContent=`${u.years} thn ${u.months} bln`; 
+      genderEl.textContent=gender; 
+      provEl.textContent= ADM[provCode]?.name || `Kode Provinsi ${provCode}`; 
+      kabEl.textContent= ADM[provCode]?.kab?.[kabCode]?.name || `Kode Kab/Kota ${kabCode}`; 
+      
+      // Populate kecamatan dropdown
+      const kecData = ADM[provCode]?.kab?.[kabCode]?.kec;
+      if (kecData && typeof kecData === 'object') {
+        const kecList = Object.keys(kecData);
+        kecEl.innerHTML = `<option value="">Pilih kecamatan…</option>` + kecList.map(k=>`<option value="${k}">${k}</option>`).join('');
+      } else {
+        kecEl.innerHTML = `<option value="">Pilih kecamatan…</option>`;
+      }
+      
+      // Reset kelurahan dropdown
+      kelEl.innerHTML = `<option value="">Pilih kelurahan/desa…</option>`;
+    }
+    
+    function populateKelurahan() {
+      const nik = nikEl.value;
+      const provCode = nik.slice(0,2);
+      const kabCode = nik.slice(0,4);
+      const selectedKec = kecEl.value;
+      
+      if (!selectedKec) {
+        kelEl.innerHTML = `<option value="">Pilih kelurahan/desa…</option>`;
+        return;
+      }
+      
+      const kelList = ADM[provCode]?.kab?.[kabCode]?.kec?.[selectedKec];
+      if (kelList && Array.isArray(kelList)) {
+        kelEl.innerHTML = `<option value="">Pilih kelurahan/desa…</option>` + kelList.map(k=>`<option value="${k}">${k}</option>`).join('');
+      } else {
+        kelEl.innerHTML = `<option value="">Pilih kelurahan/desa…</option>`;
+      }
+    }
+    
+    function resetIdentity(){ 
+      dobEl.textContent='—'; 
+      ageEl.textContent='—'; 
+      genderEl.textContent='—'; 
+      provEl.textContent='—'; 
+      kabEl.textContent='—'; 
+      kecEl.innerHTML = `<option value="">Pilih kecamatan…</option>`; 
+      kelEl.innerHTML = `<option value="">Pilih kelurahan/desa…</option>`;
+    }
+    
     function showToast(message){
       const t = document.getElementById('toast'); const m = document.getElementById('toastMsg'); m.textContent = message; t.classList.remove('hidden');
       t.animate([{ transform: 'translate(-50%, 20px)', opacity: 0 },{ transform: 'translate(-50%, 0)', opacity: 1 }], { duration: 200, fill: 'forwards' });
       clearTimeout(window.__toastTimer);
       window.__toastTimer = setTimeout(()=>{ const anim = t.animate([{ opacity: 1 },{ opacity: 0 }], { duration: 250, fill: 'forwards' }); anim.onfinish = ()=> t.classList.add('hidden'); }, 2200);
     }
+    
     function resetCaseForm(){
-      lapGigitan.checked=false; nikEl.value=''; namaLengkap.value=''; nikErr.classList.add('hidden'); resetIdentity();
+      lapGigitan.checked=false; 
+      nikEl.value=''; 
+      namaLengkap.value=''; 
+      nikErr.classList.add('hidden'); 
+      resetIdentity();
       alamatKejadianEl.value=''; 
-      kelEl.value = ''; // <-- TAMBAHKAN INI
       
-      // Reset alamat domisili dan checkbox
       const alamatDomisiliField = document.getElementById('alamatDomisili');
       const sameAsKejadianCheckbox = document.getElementById('sameAsKejadian');
       
@@ -1446,15 +1558,15 @@
       sameAsKejadianCheckbox.checked = false;
       
       document.getElementById('telp').value='';
-      jenisHewan.value=''; lokasiGigitan.value=''; kategoriGigitan.value=''; statusPemilik.value=''; statusHewan.value='';
+      tanggalDigigit.value='';
+      jenisHewan.value=''; lokasiGigitan.value=''; kondisiLuka.value=''; pengobatan.value=''; kategoriGigitan.value=''; statusPemilik.value=''; statusHewan.value='';
       [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].forEach(cb=> cb.checked=false);
       document.querySelectorAll('input[name="hasLab"]').forEach(r=> r.checked=false);
-      labName.value=''; specimenType.value=''; specimenId.value=''; collectionDate.value=''; resultDate.value=''; examMethod.value=''; equipment.value=''; reagent.value=''; examResult.value='';
+      labName.value=''; specimenType.value=''; specimenId.value=''; collectionDate.value=''; resultDate.value=''; examMethod.value=''; equipment.value=''; reagent.value='';
       step=0;
     }
 
     // ====== Patients ======
-    // Array untuk menyimpan data pasien yang telah diinputkan
     let patients = [];
     const patientListEl = document.getElementById('patientList');
     const patientEmptyEl = document.getElementById('patientEmpty');
@@ -1470,14 +1582,9 @@
     }
 
     function renderPatients(keyword=''){
-      console.log('renderPatients dipanggil. Total pasien:', patients.length);
-      console.log('Keyword pencarian:', keyword);
-      
       const kw = keyword.trim().toLowerCase();
       const data = patients.map(p=>({...p, age: ageYearsFromNik(p.nik)}))
         .filter(p=> !kw || p.name.toLowerCase().includes(kw) || p.nik.includes(kw));
-
-      console.log('Data yang akan ditampilkan:', data.length, 'pasien');
 
       patientListEl.innerHTML = data.map(p => `
         <button class="card text-left rounded-xl bg-white border shadow-card w-full">
@@ -1494,7 +1601,6 @@
         </button>
       `).join('');
 
-      // attach click -> detail
       [...patientListEl.querySelectorAll('button.card')].forEach((el, idx) => {
         el.addEventListener('click', () => {
           selectedPatient = data[idx];
@@ -1514,15 +1620,19 @@
       document.getElementById('detBirthDate').textContent = p.birthDate || '—';
       document.getElementById('detProvince').textContent = p.province || '—';
       document.getElementById('detDistrict').textContent = p.district || '—';
-      document.getElementById('detKec').textContent = p.kec || '—'; // <-- TAMBAHKAN INI
-      document.getElementById('detKel').textContent = p.kel || '—'; // <-- TAMBAHKAN INI
+      document.getElementById('detKec').textContent = p.kec || '—';
+      document.getElementById('detKel').textContent = p.kel || '—';
       document.getElementById('detRegisteredAddress').textContent = p.registeredAddress || '—';
       document.getElementById('detResidentialAddress').textContent = p.residentialAddress || '—';
+      document.getElementById('detPhone').textContent = p.phone || '—';
       
       // Case Report
       document.getElementById('detDiagnosis').textContent = p.diagnosis || '—';
+      document.getElementById('detTanggalDigigit').textContent = p.tanggalDigigit || '—';
       document.getElementById('detAnimalType').textContent = p.animalType || '—';
       document.getElementById('detBiteLocation').textContent = p.biteLocation || '—';
+      document.getElementById('detKondisiLuka').textContent = p.kondisiLuka || '—';
+      document.getElementById('detPengobatan').textContent = p.pengobatan || '—';
       document.getElementById('detBiteCategory').textContent = p.biteCategory || '—';
       document.getElementById('detAnimalOwnership').textContent = p.animalOwnership || '—';
       document.getElementById('detAnimalStatus').textContent = p.animalStatus || '—';
