@@ -477,18 +477,39 @@
           <option>Lainnya</option>
         </select>
       </div>
+	  
+	  <div id="jenisHewanLainnyaWrap" class="mb-5 hidden">
+  <label for="jenisHewanLainnya" class="block text-sm font-medium text-slate-700 mb-2">
+    Sebutkan Jenis Hewan Lainnya <span class="text-red-600">*</span>
+  </label>
+  <input id="jenisHewanLainnya" type="text"
+         class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+         placeholder="Contoh: Monyet, Musang, Babi Hutan, dll"/>
+  <p class="hint mt-1">Isi field ini jika memilih "Lainnya" pada Jenis Hewan.</p>
+</div>
 
       <div class="mb-5">
         <label class="block text-sm font-medium text-slate-700 mb-2">Area Gigitan <span class="text-red-600">*</span></label>
         <select id="lokasiGigitan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
-          <option>Kepala / Leher</option>
+          <option>Kepala</option>
+		  <option>Leher</option>
           <option>Tangan</option>
           <option>Kaki</option>
           <option>Badan</option>
           <option>Lainnya</option>
         </select>
       </div>
+
+	<div id="lokasiGigitanLainnyaWrap" class="mb-5 hidden">
+		<label for="lokasiGigitanLainnya" class="block text-sm font-medium text-slate-700 mb-2">
+		Sebutkan Area Gigitan Lainnya <span class="text-red-600">*</span>
+		</label>
+		<input id="lokasiGigitanLainnya" type="text"
+         class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+         placeholder="Contoh: Punggung, Paha, Perut, dll"/>
+		<p class="hint mt-1">Isi field ini jika memilih "Lainnya" pada Area Gigitan.</p>
+	</div>
 
       <div class="mb-5">
         <label class="block text-sm font-medium text-slate-700 mb-2">Kondisi Luka <span class="text-red-600">*</span></label>
@@ -501,6 +522,16 @@
           <option>Lainnya</option>
         </select>
       </div>
+
+<div id="kondisiLukaLainnyaWrap" class="mb-5 hidden">
+  <label for="kondisiLukaLainnya" class="block text-sm font-medium text-slate-700 mb-2">
+    Sebutkan Kondisi Luka Lainnya <span class="text-red-600">*</span>
+  </label>
+  <input id="kondisiLukaLainnya" type="text"
+         class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+         placeholder="Jelaskan kondisi luka secara detail"/>
+  <p class="hint mt-1">Isi field ini jika memilih "Lainnya" pada Kondisi Luka.</p>
+</div>
 
       <div class="mb-5">
         <label class="block text-sm font-medium text-slate-700 mb-2">Pengobatan <span class="text-red-600">*</span></label>
@@ -516,9 +547,9 @@
         <label class="block text-sm font-medium text-slate-700 mb-2">Kategori atas Gigitan</label>
         <select id="kategoriGigitan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
-          <option>Kategori 1</option>
-          <option>Kategori 2</option>
-          <option>Kategori 3</option>
+          <option>Kategori 1 (Belum digigit cukup dicuci )</option>
+          <option>Kategori 2 (Gigit hanya lecet tanpa darah)</option>
+          <option>Kategori 3(Menembus kulit tunggal/banyak)</option>
         </select>
       </div>
 
@@ -527,7 +558,7 @@
         <select id="statusPemilik" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
           <option value="">Pilih salah satu…</option>
           <option>Milik Sendiri</option>
-          <option>Milik Tetangga</option>
+          <option>Hewan Diliarkan</option>
           <option>Hewan Liar</option>
           <option>Tidak Tahu</option>
         </select>
@@ -541,6 +572,7 @@
           <option>Hilang</option>
           <option>Masih Hidup dan diobservasi</option>
           <option>Mati Dibunuh</option>
+		  <option>Mati untuk Observasi</option>
         </select>
       </div>
 
@@ -1309,17 +1341,34 @@
       return nikOk && namaOk && alamatOk && kecOk && kelOk;
     }
     function validStep2(){
-      const td = !!tanggalDigigit.value;
-      const j = !!jenisHewan.value; 
-      const l = !!lokasiGigitan.value; 
-      const kl = !!kondisiLuka.value;
-      const pg = !!pengobatan.value;
-      const sp = !!statusPemilik.value; 
-      const sh = !!statusHewan.value;
-      const anySym = [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].some(cb=>cb.checked);
-      symErr.classList.toggle('hidden', anySym);
-      return td && j && l && kl && pg && sp && sh && anySym;
-    }
+  const td = !!tanggalDigigit.value;
+  const j = !!jenisHewan.value; 
+  const l = !!lokasiGigitan.value; 
+  const kl = !!kondisiLuka.value;
+  const pg = !!pengobatan.value;
+  const sp = !!statusPemilik.value; 
+  const sh = !!statusHewan.value;
+  const anySym = [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].some(cb=>cb.checked);
+  
+  // Validasi field "Lainnya"
+  let jenisHewanValid = true;
+  if (jenisHewan.value === 'Lainnya') {
+    jenisHewanValid = document.getElementById('jenisHewanLainnya').value.trim().length > 0;
+  }
+  
+  let lokasiGigitanValid = true;
+  if (lokasiGigitan.value === 'Lainnya') {
+    lokasiGigitanValid = document.getElementById('lokasiGigitanLainnya').value.trim().length > 0;
+  }
+  
+  let kondisiLukaValid = true;
+  if (kondisiLuka.value === 'Lainnya') {
+    kondisiLukaValid = document.getElementById('kondisiLukaLainnya').value.trim().length > 0;
+  }
+  
+  symErr.classList.toggle('hidden', anySym);
+  return td && j && l && kl && pg && sp && sh && anySym && jenisHewanValid && lokasiGigitanValid && kondisiLukaValid;
+}
     function validStep3(){ return !!hasLabRadios(); }
     function validStep4(){
       return labName.value && specimenType.value.trim() && specimenId.value.trim() && collectionDate.value && resultDate.value && examMethod.value && equipment.value && reagent.value && examResult.value;
@@ -1383,51 +1432,83 @@
       }
     });
 
-    function savePatient() {
-      const caseData = {
-        inputDate: new Date().toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase(),
-        nik: nikEl.value,
-        name: namaLengkap.value.trim(),
-        gender: genderEl.textContent,
-        birthDate: dobEl.textContent,
-        province: provEl.textContent,
-        district: kabEl.textContent,
-        kec: kecEl.value.toUpperCase(),
-        kel: kelEl.value.toUpperCase(),
-        registeredAddress: alamatKejadianEl.value.trim(),
-        residentialAddress: document.getElementById('alamatDomisili').value.trim(),
-        phone: document.getElementById('telp').value.trim(),
-        
-        diagnosis: 'Gigitan Hewan Penular Rabies (GHPR)',
-        tanggalDigigit: tanggalDigigit.value ? new Date(tanggalDigigit.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
-        animalType: jenisHewan.value,
-        biteLocation: lokasiGigitan.value,
-        kondisiLuka: kondisiLuka.value,
-        pengobatan: pengobatan.value,
-        biteCategory: kategoriGigitan.value || '-',
-        animalOwnership: statusPemilik.value,
-        animalStatus: statusHewan.value,
-        symptoms: [...symptomsWrap.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value).join(', '),
-        
-        hasLab: hasLabRadios()?.value || 'tidak',
-        laboratory: labName.value || '-',
-        specimenType: specimenType.value.trim() || '-',
-        specimenId: specimenId.value.trim() || '-',
-        collectionDate: collectionDate.value ? new Date(collectionDate.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
-        resultDate: resultDate.value ? new Date(resultDate.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
-        examMethod: examMethod.value || '-',
-        equipment: equipment.value || '-',
-        reagent: reagent.value || '-',
-        examResult: examResult.value || '-'
-      };
-      
-      const existingIndex = patients.findIndex(p => p.nik === caseData.nik);
-      if (existingIndex === -1) {
-        patients.push(caseData);
-      } else {
-        patients[existingIndex] = caseData;
-      }
+// ============================================
+// FUNCTION savePatient() - VERSI FIXED
+// ============================================
+// Copy SELURUH function ini untuk replace function savePatient() yang lama
+
+function savePatient() {
+  // Ambil nilai final dengan mempertimbangkan "Lainnya"
+  // Versi SAFE dengan pengecekan element exists
+  
+  let finalJenisHewan = jenisHewan.value;
+  if (finalJenisHewan === 'Lainnya') {
+    const inputElement = document.getElementById('jenisHewanLainnya');
+    if (inputElement && inputElement.value.trim()) {
+      finalJenisHewan = inputElement.value.trim();
     }
+  }
+
+  let finalLokasiGigitan = lokasiGigitan.value;
+  if (finalLokasiGigitan === 'Lainnya') {
+    const inputElement = document.getElementById('lokasiGigitanLainnya');
+    if (inputElement && inputElement.value.trim()) {
+      finalLokasiGigitan = inputElement.value.trim();
+    }
+  }
+
+  let finalKondisiLuka = kondisiLuka.value;
+  if (finalKondisiLuka === 'Lainnya') {
+    const inputElement = document.getElementById('kondisiLukaLainnya');
+    if (inputElement && inputElement.value.trim()) {
+      finalKondisiLuka = inputElement.value.trim();
+    }
+  }
+
+  const caseData = {
+    inputDate: new Date().toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase(),
+    nik: nikEl.value,
+    name: namaLengkap.value.trim(),
+    gender: genderEl.textContent,
+    birthDate: dobEl.textContent,
+    province: provEl.textContent,
+    district: kabEl.textContent,
+    kec: kecEl.value.toUpperCase(),
+    kel: kelEl.value.toUpperCase(),
+    registeredAddress: alamatKejadianEl.value.trim(),
+    residentialAddress: document.getElementById('alamatDomisili').value.trim(),
+    phone: document.getElementById('telp').value.trim(),
+    
+    diagnosis: 'Gigitan Hewan Penular Rabies (GHPR)',
+    tanggalDigigit: tanggalDigigit.value ? new Date(tanggalDigigit.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
+    animalType: finalJenisHewan,
+    biteLocation: finalLokasiGigitan,
+    kondisiLuka: finalKondisiLuka,
+    pengobatan: pengobatan.value,
+    biteCategory: kategoriGigitan.value || '-',
+    animalOwnership: statusPemilik.value,
+    animalStatus: statusHewan.value,
+    symptoms: [...symptomsWrap.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value).join(', '),
+    
+    hasLab: hasLabRadios()?.value || 'tidak',
+    laboratory: labName.value || '-',
+    specimenType: specimenType.value.trim() || '-',
+    specimenId: specimenId.value.trim() || '-',
+    collectionDate: collectionDate.value ? new Date(collectionDate.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
+    resultDate: resultDate.value ? new Date(resultDate.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'sharp', year: 'numeric'}).toUpperCase() : '-',
+    examMethod: examMethod.value || '-',
+    equipment: equipment.value || '-',
+    reagent: reagent.value || '-',
+    examResult: examResult.value || '-'
+  };
+  
+  const existingIndex = patients.findIndex(p => p.nik === caseData.nik);
+  if (existingIndex === -1) {
+    patients.push(caseData);
+  } else {
+    patients[existingIndex] = caseData;
+  }
+}
 
     // Inputs -> recalc CTA
     document.addEventListener('change', (e)=>{ if(e.target.name==='jenisLaporan'){ updateCTA(); }});
@@ -1563,6 +1644,13 @@
       [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].forEach(cb=> cb.checked=false);
       document.querySelectorAll('input[name="hasLab"]').forEach(r=> r.checked=false);
       labName.value=''; specimenType.value=''; specimenId.value=''; collectionDate.value=''; resultDate.value=''; examMethod.value=''; equipment.value=''; reagent.value='';
+	  // Reset field "Lainnya"
+document.getElementById('jenisHewanLainnya').value = '';
+document.getElementById('lokasiGigitanLainnya').value = '';
+document.getElementById('kondisiLukaLainnya').value = '';
+document.getElementById('jenisHewanLainnyaWrap').classList.add('hidden');
+document.getElementById('lokasiGigitanLainnyaWrap').classList.add('hidden');
+document.getElementById('kondisiLukaLainnyaWrap').classList.add('hidden');
       step=0;
     }
 
@@ -1672,6 +1760,55 @@
     renderPatients();
     showView();
     updateCTA();
+	
+	// Event listeners untuk show/hide field "Lainnya"
+jenisHewan.addEventListener('change', function() {
+  const lainnyaWrap = document.getElementById('jenisHewanLainnyaWrap');
+  const lainnyaInput = document.getElementById('jenisHewanLainnya');
+  
+  if (this.value === 'Lainnya') {
+    lainnyaWrap.classList.remove('hidden');
+  } else {
+    lainnyaWrap.classList.add('hidden');
+    lainnyaInput.value = '';
+  }
+  updateCTA();
+});
+
+lokasiGigitan.addEventListener('change', function() {
+  const lainnyaWrap = document.getElementById('lokasiGigitanLainnyaWrap');
+  const lainnyaInput = document.getElementById('lokasiGigitanLainnya');
+  
+  if (this.value === 'Lainnya') {
+    lainnyaWrap.classList.remove('hidden');
+  } else {
+    lainnyaWrap.classList.add('hidden');
+    lainnyaInput.value = '';
+  }
+  updateCTA();
+});
+
+kondisiLuka.addEventListener('change', function() {
+  const lainnyaWrap = document.getElementById('kondisiLukaLainnyaWrap');
+  const lainnyaInput = document.getElementById('kondisiLukaLainnya');
+  
+  if (this.value === 'Lainnya') {
+    lainnyaWrap.classList.remove('hidden');
+  } else {
+    lainnyaWrap.classList.add('hidden');
+    lainnyaInput.value = '';
+  }
+  updateCTA();
+});
+
+// Event listeners untuk update CTA
+const jenisHewanLainnyaInput = document.getElementById('jenisHewanLainnya');
+const lokasiGigitanLainnyaInput = document.getElementById('lokasiGigitanLainnya');
+const kondisiLukaLainnyaInput = document.getElementById('kondisiLukaLainnya');
+
+if (jenisHewanLainnyaInput) jenisHewanLainnyaInput.addEventListener('input', updateCTA);
+if (lokasiGigitanLainnyaInput) lokasiGigitanLainnyaInput.addEventListener('input', updateCTA);
+if (kondisiLukaLainnyaInput) kondisiLukaLainnyaInput.addEventListener('input', updateCTA);
   </script>
 </body>
 </html>
