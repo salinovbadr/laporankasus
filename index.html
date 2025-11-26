@@ -488,17 +488,44 @@
   <p class="hint mt-1">Isi field ini jika memilih "Lainnya" pada Jenis Hewan.</p>
 </div>
 
-      <div class="mb-5">
-        <label class="block text-sm font-medium text-slate-700 mb-2">Area Gigitan <span class="text-red-600">*</span></label>
-        <select id="lokasiGigitan" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
-          <option value="">Pilih salah satu…</option>
-          <option>Kepala</option>
-		  <option>Leher</option>
-          <option>Tangan</option>
-          <option>Kaki</option>
-          <option>Badan</option>
-          <option>Lainnya</option>
-        </select>
+<div class="mb-5">
+        <label class="block text-sm font-medium text-slate-700 mb-2">
+          Area Gigitan (bisa pilih lebih dari satu) <span class="text-red-600">*</span>
+        </label>
+        <div id="lokasiGigitanWrap" class="mt-2 grid grid-cols-1 gap-2 text-sm">
+          
+          <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+  <input type="checkbox" value="Kepala" class="mt-1 lokasi-gigitan-checkbox accent-[var(--brand)]">
+  <span>Kepala</span>
+</label>
+
+<label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+  <input type="checkbox" value="Leher" class="mt-1 lokasi-gigitan-checkbox accent-[var(--brand)]">
+  <span>Leher</span>
+</label>
+          
+          <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+            <input type="checkbox" value="Tangan" class="mt-1 lokasi-gigitan-checkbox accent-[var(--brand)]">
+            <span>Tangan</span>
+          </label>
+          
+          <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+            <input type="checkbox" value="Kaki" class="mt-1 lokasi-gigitan-checkbox accent-[var(--brand)]">
+            <span>Kaki</span>
+          </label>
+          
+          <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+            <input type="checkbox" value="Badan" class="mt-1 lokasi-gigitan-checkbox accent-[var(--brand)]">
+            <span>Badan</span>
+          </label>
+          
+          <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+            <input type="checkbox" value="Lainnya" class="mt-1 lokasi-gigitan-checkbox accent-[var(--brand)]" id="lokasiGigitanLainnyaCheckbox">
+            <span>Lainnya</span>
+          </label>
+          
+        </div>
+        <p id="lokasiGigitanErr" class="hidden text-xs text-red-600 mt-1">Pilih minimal satu area gigitan.</p>
       </div>
 
 	<div id="lokasiGigitanLainnyaWrap" class="mb-5 hidden">
@@ -1307,7 +1334,10 @@
     // Section 2 refs
     const tanggalDigigit = document.getElementById('tanggalDigigit');
     const jenisHewan = document.getElementById('jenisHewan');
-    const lokasiGigitan = document.getElementById('lokasiGigitan');
+    const lokasiGigitanWrap = document.getElementById('lokasiGigitanWrap');
+    const lokasiGigitanCheckboxes = () => document.querySelectorAll('.lokasi-gigitan-checkbox');
+    const lokasiGigitanLainnyaCheckbox = document.getElementById('lokasiGigitanLainnyaCheckbox');
+    const lokasiGigitanErr = document.getElementById('lokasiGigitanErr');
     const kondisiLuka = document.getElementById('kondisiLuka');
     const pengobatan = document.getElementById('pengobatan');
     const kategoriGigitan = document.getElementById('kategoriGigitan');
@@ -1343,7 +1373,9 @@
     function validStep2(){
   const td = !!tanggalDigigit.value;
   const j = !!jenisHewan.value; 
-  const l = !!lokasiGigitan.value; 
+  // Validasi checkbox area gigitan (minimal 1 checked)
+  const checkedLokasiGigitan = [...lokasiGigitanCheckboxes()].filter(cb => cb.checked);
+  const l = checkedLokasiGigitan.length > 0; 
   const kl = !!kondisiLuka.value;
   const pg = !!pengobatan.value;
   const sp = !!statusPemilik.value; 
@@ -1356,8 +1388,9 @@
     jenisHewanValid = document.getElementById('jenisHewanLainnya').value.trim().length > 0;
   }
   
+  // Validasi field "Lainnya" untuk Lokasi Gigitan (checkbox-based)
   let lokasiGigitanValid = true;
-  if (lokasiGigitan.value === 'Lainnya') {
+  if (lokasiGigitanLainnyaCheckbox && lokasiGigitanLainnyaCheckbox.checked) {
     lokasiGigitanValid = document.getElementById('lokasiGigitanLainnya').value.trim().length > 0;
   }
   
@@ -1367,6 +1400,7 @@
   }
   
   symErr.classList.toggle('hidden', anySym);
+  lokasiGigitanErr.classList.toggle('hidden', l);  // Tambah baris ini
   return td && j && l && kl && pg && sp && sh && anySym && jenisHewanValid && lokasiGigitanValid && kondisiLukaValid;
 }
     function validStep3(){ return !!hasLabRadios(); }
@@ -1449,13 +1483,18 @@ function savePatient() {
     }
   }
 
-  let finalLokasiGigitan = lokasiGigitan.value;
-  if (finalLokasiGigitan === 'Lainnya') {
-    const inputElement = document.getElementById('lokasiGigitanLainnya');
-    if (inputElement && inputElement.value.trim()) {
-      finalLokasiGigitan = inputElement.value.trim();
-    }
-  }
+  // Ambil nilai final untuk Lokasi Gigitan (checkbox-based)
+  const checkedLokasiGigitan = [...lokasiGigitanCheckboxes()]
+    .filter(cb => cb.checked)
+    .map(cb => {
+      // Jika checkbox "Lainnya" dicentang, gunakan input text
+      if (cb.value === 'Lainnya') {
+        const lainnyaInput = document.getElementById('lokasiGigitanLainnya');
+        return lainnyaInput && lainnyaInput.value.trim() ? lainnyaInput.value.trim() : 'Lainnya';
+      }
+      return cb.value;
+    });
+  const finalLokasiGigitan = checkedLokasiGigitan.join(', ');
 
   let finalKondisiLuka = kondisiLuka.value;
   if (finalKondisiLuka === 'Lainnya') {
@@ -1495,7 +1534,7 @@ function savePatient() {
     specimenType: specimenType.value.trim() || '-',
     specimenId: specimenId.value.trim() || '-',
     collectionDate: collectionDate.value ? new Date(collectionDate.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
-    resultDate: resultDate.value ? new Date(resultDate.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'sharp', year: 'numeric'}).toUpperCase() : '-',
+    resultDate: resultDate.value ? new Date(resultDate.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
     examMethod: examMethod.value || '-',
     equipment: equipment.value || '-',
     reagent: reagent.value || '-',
@@ -1523,7 +1562,8 @@ function savePatient() {
     namaLengkap.addEventListener('input', updateCTA);
     kecEl.addEventListener('change', ()=> { populateKelurahan(); updateCTA(); });
     kelEl.addEventListener('change', updateCTA);
-    [tanggalDigigit,jenisHewan,lokasiGigitan,kondisiLuka,pengobatan,kategoriGigitan,statusPemilik,statusHewan].forEach(el=> el.addEventListener('change', updateCTA));
+    // Event listeners untuk dropdown (tanpa lokasiGigitan karena sudah jadi checkbox)
+[tanggalDigigit,jenisHewan,kondisiLuka,pengobatan,statusPemilik,statusHewan].forEach(el=> el.addEventListener('change', updateCTA));
     symptomsWrap.addEventListener('change', updateCTA);
     document.addEventListener('change', (e)=>{ if(e.target.name==='hasLab') updateCTA(); });
 
@@ -1640,7 +1680,7 @@ function savePatient() {
       
       document.getElementById('telp').value='';
       tanggalDigigit.value='';
-      jenisHewan.value=''; lokasiGigitan.value=''; kondisiLuka.value=''; pengobatan.value=''; kategoriGigitan.value=''; statusPemilik.value=''; statusHewan.value='';
+      jenisHewan.value='';  lokasiGigitanCheckboxes().forEach(cb => cb.checked = false); kondisiLuka.value=''; pengobatan.value=''; kategoriGigitan.value=''; statusPemilik.value=''; statusHewan.value='';
       [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].forEach(cb=> cb.checked=false);
       document.querySelectorAll('input[name="hasLab"]').forEach(r=> r.checked=false);
       labName.value=''; specimenType.value=''; specimenId.value=''; collectionDate.value=''; resultDate.value=''; examMethod.value=''; equipment.value=''; reagent.value='';
@@ -1775,18 +1815,6 @@ jenisHewan.addEventListener('change', function() {
   updateCTA();
 });
 
-lokasiGigitan.addEventListener('change', function() {
-  const lainnyaWrap = document.getElementById('lokasiGigitanLainnyaWrap');
-  const lainnyaInput = document.getElementById('lokasiGigitanLainnya');
-  
-  if (this.value === 'Lainnya') {
-    lainnyaWrap.classList.remove('hidden');
-  } else {
-    lainnyaWrap.classList.add('hidden');
-    lainnyaInput.value = '';
-  }
-  updateCTA();
-});
 
 kondisiLuka.addEventListener('change', function() {
   const lainnyaWrap = document.getElementById('kondisiLukaLainnyaWrap');
@@ -1799,6 +1827,27 @@ kondisiLuka.addEventListener('change', function() {
     lainnyaInput.value = '';
   }
   updateCTA();
+});
+
+// Event listener untuk checkbox "Lainnya" di Area Gigitan
+if (lokasiGigitanLainnyaCheckbox) {
+  lokasiGigitanLainnyaCheckbox.addEventListener('change', function() {
+    const lainnyaWrap = document.getElementById('lokasiGigitanLainnyaWrap');
+    const lainnyaInput = document.getElementById('lokasiGigitanLainnya');
+    
+    if (this.checked) {
+      lainnyaWrap.classList.remove('hidden');
+    } else {
+      lainnyaWrap.classList.add('hidden');
+      lainnyaInput.value = '';
+    }
+    updateCTA();
+  });
+}
+
+// Event listener untuk semua checkbox area gigitan
+lokasiGigitanCheckboxes().forEach(checkbox => {
+  checkbox.addEventListener('change', updateCTA);
 });
 
 // Event listeners untuk update CTA
