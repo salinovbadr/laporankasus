@@ -907,7 +907,210 @@
           </div>
         </div>
       </div>
+	  
+	  <div style="margin-top: 20px;">
+    <button id="btnEditLab" onclick="showEditLabForm()" 
+            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+      ✏️ Edit Data Lab
+    </button>
+  </div>
     </section>
+    <!-- ============================================ -->
+    <!-- VIEW: EDIT PEMERIKSAAN LAB -->
+    <!-- ============================================ -->
+    <section id="viewEditLab" class="mt-5 hidden">
+      <div class="flex items-center gap-3 mb-6">
+        <button onclick="cancelEditLab()" class="p-2 hover:bg-slate-100 rounded-lg transition">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <p class="text-lg font-semibold text-slate-900">Edit Pemeriksaan Laboratorium</p>
+      </div>
+
+      <form id="formEditLab" class="space-y-4">
+        
+        <!-- Apakah ada Lab -->
+        <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+          <div class="px-4 py-3 bg-slate-50 border-b">
+            <label class="block text-sm font-medium text-slate-700">
+              Apakah sudah dilakukan pemeriksaan lab? <span class="text-red-600">*</span>
+            </label>
+          </div>
+          <div class="p-4">
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="editHasLab" value="ya" id="editHasLabYa" class="edit-has-lab-radio accent-[var(--brand)]">
+                <span>Ya</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="editHasLab" value="tidak" id="editHasLabTidak" class="edit-has-lab-radio accent-[var(--brand)]">
+                <span>Tidak</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Field Lab (hidden by default) -->
+        <div id="editLabFieldsWrap" class="space-y-4" style="display:none;">
+          
+          <!-- Nama Lab -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editLabName" class="block text-sm font-medium text-slate-700">
+                Laboratorium <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <select id="editLabName" 
+                      class="w-full px-4 py-3 border border-slate-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+                <option value="">Pilih salah satu…</option>
+                <option>Balai Besar Veteriner</option>
+                <option>Balai Veteriner</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Jenis Spesimen -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editSpecimenType" class="block text-sm font-medium text-slate-700">
+                Jenis Spesimen <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <input type="text" id="editSpecimenType" 
+                     class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+                     placeholder="Contoh: Otak, Air Liur">
+            </div>
+          </div>
+
+          <!-- ID Spesimen -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editSpecimenId" class="block text-sm font-medium text-slate-700">
+                ID Spesimen
+              </label>
+            </div>
+            <div class="p-4">
+              <input type="text" id="editSpecimenId" 
+                     class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+                     placeholder="Contoh: SP-2024-001">
+            </div>
+          </div>
+
+          <!-- Tanggal Pengambilan -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editCollectionDate" class="block text-sm font-medium text-slate-700">
+                Tanggal Pengambilan Spesimen <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <input type="date" id="editCollectionDate" 
+                     class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+            </div>
+          </div>
+
+          <!-- Tanggal Hasil -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editResultDate" class="block text-sm font-medium text-slate-700">
+                Tanggal Hasil Lab <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <input type="date" id="editResultDate" 
+                     class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+            </div>
+          </div>
+
+          <!-- Metode -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editExamMethod" class="block text-sm font-medium text-slate-700">
+                Metode Pemeriksaan <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <select id="editExamMethod" 
+                      class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+                <option value="">Pilih salah satu…</option>
+                <option>FAT (Fluorescent Antibody Test)</option>
+                <option>RT-PCR (Reverse Transcriptase PCR)</option>
+                <option>DRIT (Direct Rapid Immunohistochemical Test)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Alat -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editEquipment" class="block text-sm font-medium text-slate-700">
+                Peralatan Utama <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <select id="editEquipment" 
+                      class="w-full px-4 py-3 border border-slate-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+                <option value="">Pilih salah satu…</option>
+                <option>Mikroskop Fluoresensi</option>
+                <option>Sistem PCR</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Reagen -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editReagent" class="block text-sm font-medium text-slate-700">
+                Bahan Habis Pakai / Reagen <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <select id="editReagent" 
+                      class="w-full px-4 py-3 border border-slate-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+                <option value="">Pilih salah satu…</option>
+                <option>Rabies Antibody Conjugate</option>
+                <option>PCR Master Mix</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Hasil -->
+          <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+            <div class="px-4 py-3 bg-slate-50 border-b">
+              <label for="editExamResult" class="block text-sm font-medium text-slate-700">
+                Hasil Pemeriksaan <span class="text-red-600">*</span>
+              </label>
+            </div>
+            <div class="p-4">
+              <select id="editExamResult" 
+                      class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]">
+                <option value="">Pilih salah satu…</option>
+                <option>Positif Rabies Virus</option>
+                <option>Negatif Rabies Virus</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-3 pt-4 pb-4">
+          <button type="button" onclick="saveEditLab()" 
+                  class="flex-1 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 font-semibold transition">
+            💾 Simpan Perubahan
+          </button>
+          <button type="button" onclick="cancelEditLab()" 
+                  class="flex-1 px-6 py-3 bg-gray-300 text-gray-700 rounded-xl hover:bg-gray-400 font-semibold transition">
+            Batal
+          </button>
+        </div>
+
+      </form>
+    </section>
+
 
     <!-- Footer CTA (case-only) -->
     <div id="footerCTA" class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 ios-safe hidden">
@@ -1284,6 +1487,7 @@
       document.getElementById('sec4').classList.toggle('hidden', !(view==='case' && step===4));
       viewPatients.classList.toggle('hidden', view!=='patients');
       viewPatientDetail.classList.toggle('hidden', view!=='patientDetail');
+      document.getElementById('viewEditLab').classList.toggle('hidden', view!=='editLab');
 
       if (view==='menu') {
         appTitle.textContent = 'Menu';
@@ -1310,6 +1514,11 @@
         footerCTA.classList.add('hidden');
         backBtn.classList.remove('opacity-50'); backBtn.disabled = false;
         if (selectedPatient) renderPatientDetail(selectedPatient);
+      } else if (view==='editLab') {
+        appTitle.textContent = 'Edit Pemeriksaan Lab';
+        progressWrap.classList.add('hidden');
+        footerCTA.classList.add('hidden');
+        backBtn.classList.remove('opacity-50'); backBtn.disabled = false;
       }
       window.scrollTo({top:0, behavior:'auto'});
     }
@@ -1724,6 +1933,7 @@ document.getElementById('kondisiLukaLainnyaWrap').classList.add('hidden');
             <div class="mt-3 grid grid-cols-[160px_1fr] gap-1 text-sm">
               <div class="text-slate-500">Nama Lengkap</div><div class="font-semibold">${p.name}</div>
               <div class="text-slate-500">Usia</div><div class="font-semibold">${(p.age ?? '—')} tahun</div>
+			  <div class="text-slate-500">Tanggal Digigit</div><div class="font-semibold">${p.tanggalDigigit ?? '—'}</div>
             </div>
           </div>
         </button>
@@ -1858,6 +2068,242 @@ const kondisiLukaLainnyaInput = document.getElementById('kondisiLukaLainnya');
 if (jenisHewanLainnyaInput) jenisHewanLainnyaInput.addEventListener('input', updateCTA);
 if (lokasiGigitanLainnyaInput) lokasiGigitanLainnyaInput.addEventListener('input', updateCTA);
 if (kondisiLukaLainnyaInput) kondisiLukaLainnyaInput.addEventListener('input', updateCTA);
+
+    // ============================================
+    // EDIT PEMERIKSAAN LAB
+    // ============================================
+
+    let editingPatientIndex = null;
+
+    // Show Edit Lab Form
+    function showEditLabForm() {
+      if (!selectedPatient) {
+        alert('Tidak ada pasien yang dipilih!');
+        return;
+      }
+      
+      // Cari index pasien di array patients
+      editingPatientIndex = patients.findIndex(p => p.nik === selectedPatient.nik);
+      if (editingPatientIndex === -1) {
+        alert('Data pasien tidak ditemukan!');
+        return;
+      }
+      
+      // Populate form dengan data existing
+      const patient = patients[editingPatientIndex];
+      
+      // Set radio hasLab
+      if (patient.hasLab === 'ya') {
+        document.getElementById('editHasLabYa').checked = true;
+        document.getElementById('editLabFieldsWrap').style.display = 'block';
+      } else {
+        document.getElementById('editHasLabTidak').checked = true;
+        document.getElementById('editLabFieldsWrap').style.display = 'none';
+      }
+      
+      // Populate field lab
+      document.getElementById('editLabName').value = patient.laboratory && patient.laboratory !== '-' ? patient.laboratory : '';
+      document.getElementById('editSpecimenType').value = patient.specimenType && patient.specimenType !== '-' ? patient.specimenType : '';
+      document.getElementById('editSpecimenId').value = patient.specimenId && patient.specimenId !== '-' ? patient.specimenId : '';
+      
+      // Convert tanggal dari format display ke format input (YYYY-MM-DD)
+      document.getElementById('editCollectionDate').value = convertDisplayToInputDate(patient.collectionDate);
+      document.getElementById('editResultDate').value = convertDisplayToInputDate(patient.resultDate);
+      
+      document.getElementById('editExamMethod').value = patient.examMethod && patient.examMethod !== '-' ? patient.examMethod : '';
+      document.getElementById('editEquipment').value = patient.equipment && patient.equipment !== '-' ? patient.equipment : '';
+      document.getElementById('editReagent').value = patient.reagent && patient.reagent !== '-' ? patient.reagent : '';
+      document.getElementById('editExamResult').value = patient.examResult && patient.examResult !== '-' ? patient.examResult : '';
+      
+      // Show edit view
+      view = 'editLab';
+      showView();
+    }
+
+    // Helper: Convert display date (20 NOV 2024) to input date (2024-11-20)
+    function convertDisplayToInputDate(displayDate) {
+      if (!displayDate || displayDate === '—' || displayDate === '-') return '';
+      
+      try {
+        // Parse format: "20 NOV 2024"
+        const parts = displayDate.trim().split(' ');
+        if (parts.length !== 3) return '';
+        
+        const day = parts[0].padStart(2, '0');
+        const monthMap = {
+          'JAN': '01', 'FEB': '02', 'MAR': '03', 'APR': '04',
+          'MAY': '05', 'MEI': '05', 'JUN': '06', 'JUL': '07', 
+          'AUG': '08', 'AGU': '08', 'SEP': '09', 'OCT': '10', 
+          'OKT': '10', 'NOV': '11', 'DEC': '12', 'DES': '12'
+        };
+        const month = monthMap[parts[1].toUpperCase()];
+        if (!month) return '';
+        
+        const year = parts[2];
+        
+        return `${year}-${month}-${day}`;
+      } catch (e) {
+        console.error('Error converting date:', e);
+        return '';
+      }
+    }
+
+    // Validate Edit Lab Form
+    function validateEditLabForm() {
+      const hasLabYa = document.getElementById('editHasLabYa').checked;
+      const hasLabTidak = document.getElementById('editHasLabTidak').checked;
+      
+      // Must select hasLab
+      if (!hasLabYa && !hasLabTidak) {
+        alert('Pilih apakah sudah dilakukan pemeriksaan lab atau belum!');
+        return false;
+      }
+      
+      // If Ya, validate required fields
+      if (hasLabYa) {
+        const labName = document.getElementById('editLabName').value.trim();
+        const specimenType = document.getElementById('editSpecimenType').value.trim();
+        const collectionDate = document.getElementById('editCollectionDate').value;
+        const resultDate = document.getElementById('editResultDate').value;
+        const examMethod = document.getElementById('editExamMethod').value;
+        const equipment = document.getElementById('editEquipment').value;
+        const reagent = document.getElementById('editReagent').value;
+        const examResult = document.getElementById('editExamResult').value;
+        
+        if (!labName) {
+          alert('Laboratorium harus dipilih!');
+          document.getElementById('editLabName').focus();
+          return false;
+        }
+        if (!specimenType) {
+          alert('Jenis Spesimen harus diisi!');
+          document.getElementById('editSpecimenType').focus();
+          return false;
+        }
+        if (!collectionDate) {
+          alert('Tanggal Pengambilan Spesimen harus diisi!');
+          document.getElementById('editCollectionDate').focus();
+          return false;
+        }
+        if (!resultDate) {
+          alert('Tanggal Hasil Lab harus diisi!');
+          document.getElementById('editResultDate').focus();
+          return false;
+        }
+        if (!examMethod) {
+          alert('Metode Pemeriksaan harus dipilih!');
+          document.getElementById('editExamMethod').focus();
+          return false;
+        }
+        if (!equipment) {
+          alert('Peralatan Utama harus dipilih!');
+          document.getElementById('editEquipment').focus();
+          return false;
+        }
+        if (!reagent) {
+          alert('Bahan Habis Pakai / Reagen harus dipilih!');
+          document.getElementById('editReagent').focus();
+          return false;
+        }
+        if (!examResult) {
+          alert('Hasil Pemeriksaan harus dipilih!');
+          document.getElementById('editExamResult').focus();
+          return false;
+        }
+      }
+      
+      return true;
+    }
+
+    // Save Edit Lab
+    function saveEditLab() {
+      if (!validateEditLabForm()) return;
+      
+      if (editingPatientIndex === null || editingPatientIndex === -1) {
+        alert('Data pasien tidak ditemukan!');
+        return;
+      }
+      
+      const hasLabYa = document.getElementById('editHasLabYa').checked;
+      
+      // Update patient data
+      patients[editingPatientIndex].hasLab = hasLabYa ? 'ya' : 'tidak';
+      
+      if (hasLabYa) {
+        patients[editingPatientIndex].laboratory = document.getElementById('editLabName').value;
+        patients[editingPatientIndex].specimenType = document.getElementById('editSpecimenType').value.trim();
+        patients[editingPatientIndex].specimenId = document.getElementById('editSpecimenId').value.trim();
+        
+        const collectionDate = document.getElementById('editCollectionDate').value;
+        patients[editingPatientIndex].collectionDate = collectionDate ? 
+          new Date(collectionDate).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-';
+        
+        const resultDate = document.getElementById('editResultDate').value;
+        patients[editingPatientIndex].resultDate = resultDate ? 
+          new Date(resultDate).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-';
+        
+        patients[editingPatientIndex].examMethod = document.getElementById('editExamMethod').value;
+        patients[editingPatientIndex].equipment = document.getElementById('editEquipment').value;
+        patients[editingPatientIndex].reagent = document.getElementById('editReagent').value;
+        patients[editingPatientIndex].examResult = document.getElementById('editExamResult').value;
+      } else {
+        // If tidak, set semua field lab ke default
+        patients[editingPatientIndex].laboratory = '-';
+        patients[editingPatientIndex].specimenType = '-';
+        patients[editingPatientIndex].specimenId = '-';
+        patients[editingPatientIndex].collectionDate = '-';
+        patients[editingPatientIndex].resultDate = '-';
+        patients[editingPatientIndex].examMethod = '-';
+        patients[editingPatientIndex].equipment = '-';
+        patients[editingPatientIndex].reagent = '-';
+        patients[editingPatientIndex].examResult = '-';
+      }
+      
+      // Update selectedPatient
+      selectedPatient = patients[editingPatientIndex];
+      
+      // Show success message
+      alert('✅ Data pemeriksaan laboratorium berhasil diperbarui!');
+      
+      // Redirect to patient detail
+      view = 'patientDetail';
+      showView();
+    }
+
+    // Cancel Edit Lab
+    function cancelEditLab() {
+      if (confirm('Batalkan perubahan? Data yang sudah diisi akan hilang.')) {
+        view = 'patientDetail';
+        showView();
+      }
+    }
+
+    // Event listener untuk radio hasLab
+    (function() {
+      // Tunggu sampai DOM loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initEditLabListeners);
+      } else {
+        initEditLabListeners();
+      }
+      
+      function initEditLabListeners() {
+        const editHasLabRadios = document.querySelectorAll('.edit-has-lab-radio');
+        if (editHasLabRadios.length > 0) {
+          editHasLabRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+              const fieldsWrap = document.getElementById('editLabFieldsWrap');
+              if (this.value === 'ya') {
+                fieldsWrap.style.display = 'block';
+              } else {
+                fieldsWrap.style.display = 'none';
+              }
+            });
+          });
+        }
+      }
+    })();
+
   </script>
 </body>
 </html>
