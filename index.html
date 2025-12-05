@@ -987,6 +987,14 @@
             </div>
           </div>
         </div>
+        
+        <!-- Tombol Edit Gejala -->
+        <div class="px-4 pb-4">
+          <button id="btnEditGejala" onclick="showEditGejalaForm()" 
+                  class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+            ✏️ Edit Gejala Pasien
+          </button>
+        </div>
       </div>
 
       <!-- Laboratory Examination Section -->
@@ -1252,6 +1260,152 @@
       </form>
     </section>
 
+
+    <!-- ============================================ -->
+    <!-- VIEW: EDIT GEJALA PASIEN -->
+    <!-- ============================================ -->
+    <section id="viewEditGejala" class="mt-5 hidden">
+      <div class="flex items-center gap-3 mb-6">
+        <button onclick="cancelEditGejala()" class="p-2 hover:bg-slate-100 rounded-lg transition">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <p class="text-lg font-semibold text-slate-900">Edit Gejala Pasien</p>
+      </div>
+
+      <form id="formEditGejala" class="space-y-4">
+        
+        <!-- Kapan terjadi gejala -->
+        <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+          <div class="px-4 py-3 bg-slate-50 border-b">
+            <label for="editTanggalGejala" class="block text-sm font-medium text-slate-700">
+              Kapan terjadi gejala?
+            </label>
+          </div>
+          <div class="p-4">
+            <input type="date" id="editTanggalGejala" 
+                   class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
+            <p class="text-xs text-slate-500 mt-2">Tanggal munculnya gejala pertama kali.</p>
+          </div>
+        </div>
+
+        <!-- Gejala yang dialami -->
+        <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+          <div class="px-4 py-3 bg-slate-50 border-b">
+            <div class="text-sm font-medium text-slate-700">
+              Gejala yang dialami pasien (pilih semua yang sesuai)
+            </div>
+          </div>
+          <div class="p-4">
+            <div id="editGejalaCheckboxWrap" class="grid grid-cols-1 gap-2 text-sm">
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Nyeri di area gigitan" class="mt-1 edit-gejala-checkbox accent-[var(--brand)]">
+                <span>Nyeri di area gigitan</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Kesemutan" class="mt-1 edit-gejala-checkbox accent-[var(--brand)]">
+                <span>Kesemutan</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Demam" class="mt-1 edit-gejala-checkbox accent-[var(--brand)]">
+                <span>Demam</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Nafsu makan menurun" class="mt-1 edit-gejala-checkbox accent-[var(--brand)]">
+                <span>Nafsu makan menurun</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Gelisah" class="mt-1 edit-gejala-checkbox accent-[var(--brand)]">
+                <span>Gelisah</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Takut air (Hydrophobia)" class="mt-1 edit-gejala-checkbox accent-[var(--brand)]">
+                <span>Takut air (Hydrophobia)</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Takut udara (Aerophobia)" class="mt-1 edit-gejala-checkbox accent-[var(--brand)]">
+                <span>Takut udara (Aerophobia)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Pasien -->
+        <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+          <div class="px-4 py-3 bg-slate-50 border-b">
+            <label class="block text-sm font-medium text-slate-700">
+              Apakah pasien meninggal dunia?
+            </label>
+          </div>
+          <div class="p-4">
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="editStatusPasien" value="ya" id="editStatusPasienYa" class="edit-status-pasien-radio accent-[var(--brand)]">
+                <span>Ya</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="editStatusPasien" value="tidak" id="editStatusPasienTidak" class="edit-status-pasien-radio accent-[var(--brand)]">
+                <span>Tidak</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tanggal Meninggal (hidden by default) -->
+        <div id="editTanggalMeninggalWrap" class="rounded-2xl overflow-hidden border bg-white shadow-card hidden">
+          <div class="px-4 py-3 bg-slate-50 border-b">
+            <label for="editTanggalMeninggal" class="block text-sm font-medium text-slate-700">
+              Tanggal meninggal
+            </label>
+          </div>
+          <div class="p-4">
+            <input type="date" id="editTanggalMeninggal" 
+                   class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
+          </div>
+        </div>
+
+        <!-- Riwayat Kontak Lain -->
+        <div class="rounded-2xl overflow-hidden border bg-white shadow-card">
+          <div class="px-4 py-3 bg-slate-50 border-b">
+            <label class="block text-sm font-medium text-slate-700">
+              Ada riwayat kontak lain?
+            </label>
+          </div>
+          <div class="p-4">
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="editRiwayatKontak" value="ya" id="editRiwayatKontakYa" class="edit-riwayat-kontak-radio accent-[var(--brand)]">
+                <span>Ya</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="editRiwayatKontak" value="tidak" id="editRiwayatKontakTidak" class="edit-riwayat-kontak-radio accent-[var(--brand)]">
+                <span>Tidak</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-3 pt-4 pb-4">
+          <button type="button" onclick="saveEditGejala()" 
+                  class="flex-1 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 font-semibold transition">
+            💾 Simpan Perubahan
+          </button>
+          <button type="button" onclick="cancelEditGejala()" 
+                  class="flex-1 px-6 py-3 bg-gray-300 text-gray-700 rounded-xl hover:bg-gray-400 font-semibold transition">
+            Batal
+          </button>
+        </div>
+
+      </form>
+    </section>
 
     <!-- Footer CTA (case-only) -->
     <div id="footerCTA" class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 ios-safe hidden">
@@ -1629,6 +1783,7 @@
       viewPatients.classList.toggle('hidden', view!=='patients');
       viewPatientDetail.classList.toggle('hidden', view!=='patientDetail');
       document.getElementById('viewEditLab').classList.toggle('hidden', view!=='editLab');
+      document.getElementById('viewEditGejala').classList.toggle('hidden', view!=='editGejala');
 
       if (view==='menu') {
         appTitle.textContent = 'Menu';
@@ -1657,6 +1812,11 @@
         if (selectedPatient) renderPatientDetail(selectedPatient);
       } else if (view==='editLab') {
         appTitle.textContent = 'Edit Pemeriksaan Lab';
+        progressWrap.classList.add('hidden');
+        footerCTA.classList.add('hidden');
+        backBtn.classList.remove('opacity-50'); backBtn.disabled = false;
+      } else if (view==='editGejala') {
+        appTitle.textContent = 'Edit Gejala Pasien';
         progressWrap.classList.add('hidden');
         footerCTA.classList.add('hidden');
         backBtn.classList.remove('opacity-50'); backBtn.disabled = false;
@@ -2507,6 +2667,160 @@ if (kondisiLukaLainnyaInput) kondisiLukaLainnyaInput.addEventListener('input', u
             });
           });
         }
+      }
+    })();
+
+
+    // ============================================
+    // EDIT GEJALA PASIEN
+    // ============================================
+
+    let editingGejalaPatientIndex = null;
+
+    // Show Edit Gejala Form
+    function showEditGejalaForm() {
+      if (!selectedPatient) {
+        alert('Tidak ada pasien yang dipilih!');
+        return;
+      }
+      
+      // Cari index pasien di array patients
+      editingGejalaPatientIndex = patients.findIndex(p => p.nik === selectedPatient.nik);
+      if (editingGejalaPatientIndex === -1) {
+        alert('Data pasien tidak ditemukan!');
+        return;
+      }
+      
+      // Populate form dengan data existing
+      const patient = patients[editingGejalaPatientIndex];
+      
+      // Set tanggal gejala
+      document.getElementById('editTanggalGejala').value = convertDisplayToInputDate(patient.tanggalGejala);
+      
+      // Populate gejala checkboxes
+      const gejalaList = patient.gejalaList || '';
+      const editGejalaCheckboxes = document.querySelectorAll('.edit-gejala-checkbox');
+      editGejalaCheckboxes.forEach(cb => {
+        cb.checked = gejalaList.includes(cb.value);
+      });
+      
+      // Set status pasien radio
+      const editStatusPasienYa = document.getElementById('editStatusPasienYa');
+      const editStatusPasienTidak = document.getElementById('editStatusPasienTidak');
+      const editTanggalMeninggalWrap = document.getElementById('editTanggalMeninggalWrap');
+      
+      if (patient.statusPasien === 'Meninggal') {
+        editStatusPasienYa.checked = true;
+        editTanggalMeninggalWrap.classList.remove('hidden');
+        document.getElementById('editTanggalMeninggal').value = convertDisplayToInputDate(patient.tanggalMeninggal);
+      } else if (patient.statusPasien === 'Hidup') {
+        editStatusPasienTidak.checked = true;
+        editTanggalMeninggalWrap.classList.add('hidden');
+      } else {
+        editStatusPasienYa.checked = false;
+        editStatusPasienTidak.checked = false;
+        editTanggalMeninggalWrap.classList.add('hidden');
+      }
+      
+      // Set riwayat kontak radio
+      const editRiwayatKontakYa = document.getElementById('editRiwayatKontakYa');
+      const editRiwayatKontakTidak = document.getElementById('editRiwayatKontakTidak');
+      
+      if (patient.riwayatKontak === 'Ya') {
+        editRiwayatKontakYa.checked = true;
+      } else if (patient.riwayatKontak === 'Tidak') {
+        editRiwayatKontakTidak.checked = true;
+      } else {
+        editRiwayatKontakYa.checked = false;
+        editRiwayatKontakTidak.checked = false;
+      }
+      
+      // Show edit view
+      view = 'editGejala';
+      showView();
+    }
+
+    // Save Edit Gejala
+    function saveEditGejala() {
+      if (editingGejalaPatientIndex === null || editingGejalaPatientIndex === -1) {
+        alert('Data pasien tidak ditemukan!');
+        return;
+      }
+      
+      // Get form values
+      const editTanggalGejala = document.getElementById('editTanggalGejala').value;
+      const editGejalaCheckboxes = document.querySelectorAll('.edit-gejala-checkbox');
+      const editGejalaList = [...editGejalaCheckboxes].filter(cb => cb.checked).map(cb => cb.value).join(', ') || '-';
+      
+      const editStatusPasienYa = document.getElementById('editStatusPasienYa');
+      const editStatusPasienTidak = document.getElementById('editStatusPasienTidak');
+      const editStatusPasien = editStatusPasienYa.checked ? 'Meninggal' : (editStatusPasienTidak.checked ? 'Hidup' : '-');
+      
+      const editTanggalMeninggal = document.getElementById('editTanggalMeninggal').value;
+      const editTanggalMeninggalFormatted = (editStatusPasienYa.checked && editTanggalMeninggal) ? 
+        new Date(editTanggalMeninggal).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-';
+      
+      const editRiwayatKontakYa = document.getElementById('editRiwayatKontakYa');
+      const editRiwayatKontakTidak = document.getElementById('editRiwayatKontakTidak');
+      const editRiwayatKontak = editRiwayatKontakYa.checked ? 'Ya' : (editRiwayatKontakTidak.checked ? 'Tidak' : '-');
+      
+      // Update patient data
+      patients[editingGejalaPatientIndex].tanggalGejala = editTanggalGejala ? 
+        new Date(editTanggalGejala).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-';
+      patients[editingGejalaPatientIndex].gejalaList = editGejalaList;
+      patients[editingGejalaPatientIndex].statusPasien = editStatusPasien;
+      patients[editingGejalaPatientIndex].tanggalMeninggal = editTanggalMeninggalFormatted;
+      patients[editingGejalaPatientIndex].riwayatKontak = editRiwayatKontak;
+      
+      // Update selectedPatient
+      selectedPatient = patients[editingGejalaPatientIndex];
+      
+      // Show success message
+      alert('✅ Data gejala pasien berhasil diperbarui!');
+      
+      // Redirect to patient detail
+      view = 'patientDetail';
+      showView();
+    }
+
+    // Cancel Edit Gejala
+    function cancelEditGejala() {
+      if (confirm('Batalkan perubahan? Data yang sudah diisi akan hilang.')) {
+        view = 'patientDetail';
+        showView();
+      }
+    }
+
+    // Event listener untuk radio status pasien di edit form
+    (function() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initEditGejalaListeners);
+      } else {
+        initEditGejalaListeners();
+      }
+      
+      function initEditGejalaListeners() {
+        const editStatusPasienRadios = document.querySelectorAll('.edit-status-pasien-radio');
+        if (editStatusPasienRadios.length > 0) {
+          editStatusPasienRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+              const editTanggalMeninggalWrap = document.getElementById('editTanggalMeninggalWrap');
+              if (this.value === 'ya') {
+                editTanggalMeninggalWrap.classList.remove('hidden');
+              } else {
+                editTanggalMeninggalWrap.classList.add('hidden');
+                document.getElementById('editTanggalMeninggal').value = '';
+              }
+            });
+          });
+        }
+        
+        // Set max date untuk edit tanggal gejala dan tanggal meninggal
+        const editTanggalGejala = document.getElementById('editTanggalGejala');
+        const editTanggalMeninggal = document.getElementById('editTanggalMeninggal');
+        const today = new Date().toISOString().split('T')[0];
+        if (editTanggalGejala) editTanggalGejala.max = today;
+        if (editTanggalMeninggal) editTanggalMeninggal.max = today;
       }
     })();
 
