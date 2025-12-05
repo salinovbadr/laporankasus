@@ -456,6 +456,112 @@
                class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
                placeholder="08xxxxxxxxxx"/>
       </div>
+
+      <!-- Gejala Pasien Section -->
+      <div class="mt-8 mb-5 rounded-2xl border border-slate-200 shadow-card">
+        <div class="px-4 py-3 bg-slate-50 border-b border-slate-200">
+          <div class="text-sm font-semibold text-slate-700">Gejala Pasien (Opsional)</div>
+        </div>
+        <div class="p-4 space-y-5">
+          
+          <!-- Kapan terjadi gejala -->
+          <div>
+            <label for="tanggalGejala" class="block text-sm font-medium text-slate-700 mb-2">
+              Kapan terjadi gejala?
+            </label>
+            <input id="tanggalGejala" type="date" 
+                   class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
+            <p class="hint mt-1">Tanggal munculnya gejala pertama kali.</p>
+          </div>
+
+          <!-- Gejala yang dialami -->
+          <div>
+            <div class="text-sm font-medium text-slate-700 mb-2">
+              Gejala yang dialami pasien (pilih semua yang sesuai)
+            </div>
+            <div id="gejalaCheckboxWrap" class="mt-2 grid grid-cols-1 gap-2 text-sm">
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Nyeri di area gigitan" class="mt-1 gejala-checkbox accent-[var(--brand)]">
+                <span>Nyeri di area gigitan</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Kesemutan" class="mt-1 gejala-checkbox accent-[var(--brand)]">
+                <span>Kesemutan</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Demam" class="mt-1 gejala-checkbox accent-[var(--brand)]">
+                <span>Demam</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Nafsu makan menurun" class="mt-1 gejala-checkbox accent-[var(--brand)]">
+                <span>Nafsu makan menurun</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Gelisah" class="mt-1 gejala-checkbox accent-[var(--brand)]">
+                <span>Gelisah</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Takut air (Hydrophobia)" class="mt-1 gejala-checkbox accent-[var(--brand)]">
+                <span>Takut air (Hydrophobia)</span>
+              </label>
+              
+              <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                <input type="checkbox" value="Takut udara (Aerophobia)" class="mt-1 gejala-checkbox accent-[var(--brand)]">
+                <span>Takut udara (Aerophobia)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Status Pasien -->
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">
+              Apakah pasien meninggal dunia?
+            </label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="statusPasien" value="ya" id="statusPasienYa" class="status-pasien-radio accent-[var(--brand)]">
+                <span>Ya</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="statusPasien" value="tidak" id="statusPasienTidak" class="status-pasien-radio accent-[var(--brand)]">
+                <span>Tidak</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Tanggal Meninggal (hidden by default) -->
+          <div id="tanggalMeninggalWrap" class="hidden">
+            <label for="tanggalMeninggal" class="block text-sm font-medium text-slate-700 mb-2">
+              Tanggal meninggal
+            </label>
+            <input id="tanggalMeninggal" type="date" 
+                   class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"/>
+          </div>
+
+          <!-- Riwayat Kontak Lain -->
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">
+              Ada riwayat kontak lain?
+            </label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="riwayatKontak" value="ya" id="riwayatKontakYa" class="riwayat-kontak-radio accent-[var(--brand)]">
+                <span>Ya</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="riwayatKontak" value="tidak" id="riwayatKontakTidak" class="riwayat-kontak-radio accent-[var(--brand)]">
+                <span>Tidak</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
     <!-- SECTION 2: Kondisi Hewan -->
@@ -843,6 +949,41 @@
             <div class="grid grid-cols-[160px_1fr] gap-2">
               <div class="text-slate-600">Gejala</div>
               <div id="detSymptoms" class="font-semibold text-slate-900"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gejala Pasien Section -->
+      <div class="rounded-2xl overflow-hidden border bg-white shadow-card mb-4">
+        <div class="px-4 py-3 bg-slate-50 border-b">
+          <div class="font-semibold text-slate-900">Gejala Pasien</div>
+        </div>
+        <div class="p-4 text-sm">
+          <div class="space-y-3">
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Tanggal Gejala</div>
+              <div id="detTanggalGejala" class="font-semibold text-slate-900"></div>
+            </div>
+            
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Gejala yang Dialami</div>
+              <div id="detGejalaList" class="font-semibold text-slate-900"></div>
+            </div>
+            
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Status Pasien</div>
+              <div id="detStatusPasien" class="font-semibold text-slate-900"></div>
+            </div>
+            
+            <div id="detTanggalMeninggalRow" class="grid grid-cols-[160px_1fr] gap-2 hidden">
+              <div class="text-slate-600">Tanggal Meninggal</div>
+              <div id="detTanggalMeninggalValue" class="font-semibold text-slate-900"></div>
+            </div>
+            
+            <div class="grid grid-cols-[160px_1fr] gap-2">
+              <div class="text-slate-600">Riwayat Kontak Lain</div>
+              <div id="detRiwayatKontak" class="font-semibold text-slate-900"></div>
             </div>
           </div>
         </div>
@@ -1539,6 +1680,16 @@
     const kecEl = document.getElementById('kec');
     const kelEl = document.getElementById('kel');
     const alamatKejadianEl = document.getElementById('alamatKejadian');
+    
+    // Gejala Pasien refs
+    const tanggalGejala = document.getElementById('tanggalGejala');
+    const gejalaCheckboxes = () => document.querySelectorAll('.gejala-checkbox');
+    const statusPasienYa = document.getElementById('statusPasienYa');
+    const statusPasienTidak = document.getElementById('statusPasienTidak');
+    const tanggalMeninggalWrap = document.getElementById('tanggalMeninggalWrap');
+    const tanggalMeninggal = document.getElementById('tanggalMeninggal');
+    const riwayatKontakYa = document.getElementById('riwayatKontakYa');
+    const riwayatKontakTidak = document.getElementById('riwayatKontakTidak');
 
     // Section 2 refs
     const tanggalDigigit = document.getElementById('tanggalDigigit');
@@ -1727,6 +1878,13 @@ function savePatient() {
     residentialAddress: document.getElementById('alamatDomisili').value.trim(),
     phone: document.getElementById('telp').value.trim(),
     
+    // Gejala Pasien
+    tanggalGejala: tanggalGejala.value ? new Date(tanggalGejala.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
+    gejalaList: [...gejalaCheckboxes()].filter(cb => cb.checked).map(cb => cb.value).join(', ') || '-',
+    statusPasien: statusPasienYa.checked ? 'Meninggal' : (statusPasienTidak.checked ? 'Hidup' : '-'),
+    tanggalMeninggal: (statusPasienYa.checked && tanggalMeninggal.value) ? new Date(tanggalMeninggal.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
+    riwayatKontak: riwayatKontakYa.checked ? 'Ya' : (riwayatKontakTidak.checked ? 'Tidak' : '-'),
+    
     diagnosis: 'Gigitan Hewan Penular Rabies (GHPR)',
     tanggalDigigit: tanggalDigigit.value ? new Date(tanggalDigigit.value).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase() : '-',
     animalType: finalJenisHewan,
@@ -1888,6 +2046,17 @@ function savePatient() {
       sameAsKejadianCheckbox.checked = false;
       
       document.getElementById('telp').value='';
+      
+      // Reset Gejala Pasien
+      tanggalGejala.value='';
+      gejalaCheckboxes().forEach(cb => cb.checked = false);
+      statusPasienYa.checked = false;
+      statusPasienTidak.checked = false;
+      tanggalMeninggal.value='';
+      tanggalMeninggalWrap.classList.add('hidden');
+      riwayatKontakYa.checked = false;
+      riwayatKontakTidak.checked = false;
+      
       tanggalDigigit.value='';
       jenisHewan.value='';  lokasiGigitanCheckboxes().forEach(cb => cb.checked = false); kondisiLuka.value=''; pengobatan.value=''; kategoriGigitan.value=''; statusPemilik.value=''; statusHewan.value='';
       [...symptomsWrap.querySelectorAll('input[type="checkbox"]')].forEach(cb=> cb.checked=false);
@@ -1963,6 +2132,21 @@ document.getElementById('kondisiLukaLainnyaWrap').classList.add('hidden');
       document.getElementById('detRegisteredAddress').textContent = p.registeredAddress || '—';
       document.getElementById('detResidentialAddress').textContent = p.residentialAddress || '—';
       document.getElementById('detPhone').textContent = p.phone || '—';
+      
+      // Gejala Pasien
+      document.getElementById('detTanggalGejala').textContent = p.tanggalGejala || '—';
+      document.getElementById('detGejalaList').textContent = p.gejalaList || '—';
+      document.getElementById('detStatusPasien').textContent = p.statusPasien || '—';
+      document.getElementById('detRiwayatKontak').textContent = p.riwayatKontak || '—';
+      
+      // Show/hide tanggal meninggal row
+      const tanggalMeninggalRow = document.getElementById('detTanggalMeninggalRow');
+      if (p.statusPasien === 'Meninggal' && p.tanggalMeninggal && p.tanggalMeninggal !== '-') {
+        tanggalMeninggalRow.classList.remove('hidden');
+        document.getElementById('detTanggalMeninggalValue').textContent = p.tanggalMeninggal;
+      } else {
+        tanggalMeninggalRow.classList.add('hidden');
+      }
       
       // Case Report
       document.getElementById('detDiagnosis').textContent = p.diagnosis || '—';
@@ -2068,6 +2252,28 @@ const kondisiLukaLainnyaInput = document.getElementById('kondisiLukaLainnya');
 if (jenisHewanLainnyaInput) jenisHewanLainnyaInput.addEventListener('input', updateCTA);
 if (lokasiGigitanLainnyaInput) lokasiGigitanLainnyaInput.addEventListener('input', updateCTA);
 if (kondisiLukaLainnyaInput) kondisiLukaLainnyaInput.addEventListener('input', updateCTA);
+
+    // ============================================
+    // EVENT LISTENERS: GEJALA PASIEN
+    // ============================================
+    
+    // Set max date untuk tanggal gejala dan tanggal meninggal (tidak boleh masa depan)
+    const today = new Date().toISOString().split('T')[0];
+    if (tanggalGejala) tanggalGejala.max = today;
+    if (tanggalMeninggal) tanggalMeninggal.max = today;
+    
+    // Show/hide tanggal meninggal berdasarkan status pasien
+    const statusPasienRadios = document.querySelectorAll('.status-pasien-radio');
+    statusPasienRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'ya') {
+          tanggalMeninggalWrap.classList.remove('hidden');
+        } else {
+          tanggalMeninggalWrap.classList.add('hidden');
+          tanggalMeninggal.value = ''; // Reset value saat di-hide
+        }
+      });
+    });
 
     // ============================================
     // EDIT PEMERIKSAAN LAB
